@@ -12,7 +12,9 @@ namespace DataAccess.PredictedGameRepository
         }
         public async Task<IEnumerable<DbPredictedGame>> GetPredictedGames()
         {
-            return await _dbContext.PredictedGame.ToListAsync();
+            return await _dbContext.PredictedGame.Include(x => x.awayTeam)
+                                                .Include(x => x.homeTeam)
+                                                .ToListAsync();
         }
 	}
 }
