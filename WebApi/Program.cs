@@ -22,6 +22,7 @@ builder.Services.AddCors(options =>
                       builder =>
                       {
                           builder.WithOrigins("http://localhost:8081");
+                          builder.WithOrigins("https://gray-bush-0811f9c10.1.azurestaticapps.net/");
                       });
 });
 
