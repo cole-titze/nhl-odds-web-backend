@@ -1,4 +1,6 @@
-﻿using DataAccess.PredictedGameRepository;
+﻿using BusinessLogic.LogLoss;
+using BusinessLogic.PredictedGameGetter;
+using DataAccess.PredictedGameRepository;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebApi.Controllers
@@ -8,17 +10,23 @@ namespace WebApi.Controllers
     public class PredictedGameController
 	{
         private readonly ILogger<PredictedGameController> _logger;
-        private readonly IPredictedGameRepository _predictedGameRepository;
+        private readonly IPredictedGameGetter _predictedGameGetter;
 
-        public PredictedGameController(ILogger<PredictedGameController> logger, IPredictedGameRepository predictedGameRepository)
+        public PredictedGameController(ILogger<PredictedGameController> logger, IPredictedGameGetter predictedGameBL)
         {
             _logger = logger;
-            _predictedGameRepository = predictedGameRepository;
+            _predictedGameGetter = predictedGameBL;
         }
         [HttpGet]
         public async Task<IResult> GetAllPredictedGames()
         {
-            var predictedGames = await _predictedGameRepository.GetPredictedGames();
+            var predictedGames = await _predictedGameGetter.GetPredictedGames();
+            return Results.Ok(predictedGames);
+        }
+        [HttpGet]
+        public async Task<IResult> GetAllGamesOnDate([FromBody]DateTime day)
+        {
+            var predictedGames = await _predictedGameGetter.GetPredictedGamesOnDate(day);
             return Results.Ok(predictedGames);
         }
     }
