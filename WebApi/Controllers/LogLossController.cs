@@ -24,7 +24,7 @@ namespace WebApi.Controllers
         [HttpGet]
         public async Task<IResult> GetLogLossesOfYearByNumberOfGames(int year, int numberOfGames)
         {
-            var logLosses = await _logLossCalculator.CalculateLogLossForYearAndNumberOfGames(year, numberOfGames);
+            var logLosses = await _logLossCalculator.CalculateLogLossesForYearAndNumberOfGames(year, numberOfGames);
             return Results.Ok(logLosses);
         }
     }

@@ -12,6 +12,8 @@ namespace Entities.DbModels
         public double vegasAwayOdds { get; set; }
         public double modelHomeOdds { get; set; }
         public double modelAwayOdds { get; set; }
+        public bool hasBeenPlayed { get; set; }
+        public int winner { get; set; }
 
         [ForeignKey("homeTeamId")]
         public DbTeam homeTeam { get; set; }
