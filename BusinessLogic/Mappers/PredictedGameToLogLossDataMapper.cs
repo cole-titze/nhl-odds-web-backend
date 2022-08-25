@@ -4,13 +4,13 @@ using Entities.Models;
 
 namespace BusinessLogic.Mappers
 {
-    public static class PredictedGameToGameOddsDataMapper
+    public static class PredictedGameToLogLossDataMapper
     {
-        public static GameOddsData Map(IEnumerable<DbPredictedGame> predictedGames)
+        public static LogLossData Map(IEnumerable<DbPredictedGame> predictedGames)
         {
-            var homeModelOdds = new List<Odds>();
             var gameWinners = new List<int>();
             var oddsMap = new Dictionary<string, List<Odds>>();
+            oddsMap.Add("HomeModel", new List<Odds>());
             oddsMap.Add("BovadaClosingVegasModel", new List<Odds>());
             oddsMap.Add("BovadaOpeningVegasModel", new List<Odds>());
             oddsMap.Add("MyBookieClosingVegasModel", new List<Odds>());
@@ -30,7 +30,7 @@ namespace BusinessLogic.Mappers
                     HomeOdds = game.modelHomeOdds,
                     AwayOdds = game.modelAwayOdds,
                 };
-                homeModelOdds.Add(odds);
+                oddsMap["HomeModel"].Add(odds);
 
                 odds = new Odds
                 {
@@ -105,11 +105,10 @@ namespace BusinessLogic.Mappers
                 gameWinners.Add(game.cleanedGame.winner);
             }
 
-            return new GameOddsData()
+            return new LogLossData()
             {
                 OddsMap = oddsMap,
-                TrueOutcomes = gameWinners,
-                homeModelOdds = homeModelOdds
+                TrueOutcomes = gameWinners
             };
         }
     }
