@@ -5,7 +5,7 @@ namespace BusinessLogic.LogLoss
 {
     public interface ILogLossCalculator
     {
-        Task<IEnumerable<ModelLogLoss>> CalculateLogLossForYearAndNumberOfGames(int year, int numberOfGames);
+        Task<IEnumerable<ModelLogLoss>> CalculateLogLossesForYearAndNumberOfGames(int year, int numberOfGames);
     }
 }
 

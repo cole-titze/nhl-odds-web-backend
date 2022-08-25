@@ -10,6 +10,7 @@ namespace DataAccess
         }
         public virtual DbSet<DbPredictedGame> PredictedGame { get; set; }
         public virtual DbSet<DbTeam> Team { get; set; }
+        public virtual DbSet<DbCleanedGame> CleanedGame { get; set; }
     }
 }
 
