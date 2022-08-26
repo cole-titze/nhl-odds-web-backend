@@ -29,7 +29,6 @@ namespace DataAccess.PredictedGameRepository
         {
             return await _dbContext.PredictedGame.OrderByDescending(d => d.gameDate)
                                                     .Reverse()
-                                                    .Take(numberOfGames)
                                                     .Where(x => (x.bet365OpeningVegasHomeOdds != -1 && x.bet365OpeningVegasAwayOdds != -1))
                                                     .Where(x => (x.bet365ClosingVegasHomeOdds != -1 && x.bet365ClosingVegasAwayOdds != -1))
                                                     .Where(x => (x.bovadaOpeningVegasHomeOdds != -1 && x.bovadaOpeningVegasAwayOdds != -1))
@@ -52,6 +51,7 @@ namespace DataAccess.PredictedGameRepository
                                                     .Where(x => (x.betOnlineClosingVegasHomeOdds != 0 && x.betOnlineClosingVegasHomeOdds != 0))
                                                     .Include(x => x.cleanedGame )
                                                     .Where(x => x.cleanedGame.hasBeenPlayed == true)
+                                                    .Take(numberOfGames)
                                                     .ToListAsync();
         }
     }
