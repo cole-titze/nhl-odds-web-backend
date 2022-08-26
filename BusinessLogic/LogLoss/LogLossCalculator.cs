@@ -15,12 +15,12 @@ public class LogLossCalculator : ILogLossCalculator
     public async Task<IEnumerable<ModelLogLoss>> CalculateLogLossesForYearAndNumberOfGames(int year, int numberOfGames)
     {
         var predictedGames = await _predictedGameRepository.GetFirstPredictedGamesOfYear(year, numberOfGames);
-        var logLossData = PredictedGameToGameOddsDataMapper.Map(predictedGames);
+        var logLossData = PredictedGameToLogLossDataMapper.Map(predictedGames);
         IEnumerable<ModelLogLoss> logLosses = CalculateLogLossFromPredictions(logLossData);
         return logLosses;
     }
 
-    private IEnumerable<ModelLogLoss> CalculateLogLossFromPredictions(GameOddsData logLossData)
+    private IEnumerable<ModelLogLoss> CalculateLogLossFromPredictions(LogLossData logLossData)
     {
         var modelLogLosses = new List<ModelLogLoss>();
         foreach(var key in logLossData.OddsMap.Keys)
@@ -33,10 +33,10 @@ public class LogLossCalculator : ILogLossCalculator
                 if (odds.AwayOdds == 0 || odds.HomeOdds == 0)
                     break;
                 var y = logLossData.TrueOutcomes[gameIndex];
-                logLoss += -(((int)y)*Math.Log(odds.HomeOdds) + (1-((int)y))*Math.Log(1-odds.AwayOdds));
+                logLoss += -(((int)y)*Math.Log(odds.AwayOdds) + (1-((int)y))*Math.Log(1-odds.HomeOdds));
                 gameIndex++;
             }
-            logLoss = logLoss / logLossData.OddsMap[key].Count;
+            logLoss = logLoss / gameIndex;
             var modelLogLoss = new ModelLogLoss()
             {
                 LogLoss = logLoss,
