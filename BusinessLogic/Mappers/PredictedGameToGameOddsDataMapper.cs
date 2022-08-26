@@ -9,7 +9,7 @@ namespace BusinessLogic.Mappers
         public static GameOddsData Map(IEnumerable<DbPredictedGame> predictedGames)
         {
             var homeModelOdds = new List<Odds>();
-            var gameWinners = new List<int>();
+            var gameWinners = new List<WINNER>();
             var oddsMap = new Dictionary<string, List<Odds>>();
             oddsMap.Add("BovadaClosingVegasModel", new List<Odds>());
             oddsMap.Add("BovadaOpeningVegasModel", new List<Odds>());

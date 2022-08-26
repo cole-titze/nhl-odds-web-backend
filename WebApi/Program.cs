@@ -3,6 +3,7 @@ using DataAccess;
 using Microsoft.EntityFrameworkCore;
 using BusinessLogic.LogLoss;
 using BusinessLogic.PredictedGameGetter;
+using BusinessLogic.Betting;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +12,7 @@ string _connectionString = builder.Configuration.GetConnectionString("PredictedG
 // Add services to the container.
 builder.Services.AddScoped<ILogLossCalculator, LogLossCalculator>();
 builder.Services.AddScoped<IPredictedGameGetter, PredictedGameGetter>();
+builder.Services.AddScoped<IBettingCalculator, BettingCalculator>();
 builder.Services.AddScoped<IPredictedGameRepository, PredictedGameRepository>();
 builder.Services.AddDbContext<PredictedGameDbContext>(x => x.UseSqlServer(_connectionString));
 

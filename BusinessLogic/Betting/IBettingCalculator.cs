@@ -5,7 +5,7 @@ namespace BusinessLogic.Betting
 {
     public interface IBettingCalculator
     {
-        Task<IEnumerable<ModelBetResult>> CalculateBetOutcomes(int year, int numberOfGames, decimal betAmount);
+        Task<IEnumerable<ModelBetResult>> CalculateBetOutcomes(int year, int numberOfGames, double betAmount);
     }
 }
 

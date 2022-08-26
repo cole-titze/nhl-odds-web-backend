@@ -1,6 +1,7 @@
 ﻿using System;
 using BusinessLogic.Mappers;
 using DataAccess.PredictedGameRepository;
+using Entities.DbModels;
 using Entities.Models;
 
 namespace BusinessLogic.Betting
@@ -14,18 +15,16 @@ namespace BusinessLogic.Betting
             _predictedGameRepository = predictedGameRepository;
         }
 
-        public async Task<IEnumerable<ModelBetResult>> CalculateBetOutcomes(int year, int numberOfGames, decimal betAmount)
+        public async Task<IEnumerable<ModelBetResult>> CalculateBetOutcomes(int year, int numberOfGames, double betAmount)
         {
-            // Must get correct outcomes of each match then calculate logloss
             var predictedGames = await _predictedGameRepository.GetFirstPredictedGamesOfYear(year, numberOfGames);
             var gameOddsData = PredictedGameToGameOddsDataMapper.Map(predictedGames);
             IEnumerable<ModelBetResult> betResults = CalculateBetResultsFromPredictions(gameOddsData, betAmount);
             return betResults;
         }
-        // 0 win is away, 1 win is home
-        // TODO: Make enum
-        private IEnumerable<ModelBetResult> CalculateBetResultsFromPredictions(GameOddsData gameOddsData, decimal betAmount)
+        private IEnumerable<ModelBetResult> CalculateBetResultsFromPredictions(GameOddsData gameOddsData, double betAmount)
         {
+            double percentOdds = 0;
             var modelLogLosses = new List<ModelBetResult>();
             foreach (var key in gameOddsData.OddsMap.Keys)
             {
@@ -37,9 +36,15 @@ namespace BusinessLogic.Betting
                     if (odds.AwayOdds == 0 || odds.HomeOdds == 0)
                         break;
                     var y = gameOddsData.TrueOutcomes[gameIndex];
-                    if ((gameOddsData.homeModelOdds[gameIndex].HomeOdds >= .5 && y == 0) || (gameOddsData.homeModelOdds[gameIndex].AwayOdds > .5 && y == 1))
+                    if (LostBet(gameOddsData, gameIndex, y))
                         break;
-                    betResult += Convert.ToDouble((betAmount * 1) - betAmount); // TODO: Won bet, calculate money gained
+                    if (IsHomeWin(y))
+                        percentOdds = odds.HomeOdds;
+                    else if (IsAwayWin(y))
+                        percentOdds = odds.AwayOdds;
+
+                    // Convert percentage to decimal odds and calculate winnings
+                    betResult += (betAmount/percentOdds) - betAmount;
                     gameIndex++;
                 }
                 var modelLogLoss = new ModelBetResult()
@@ -50,6 +55,18 @@ namespace BusinessLogic.Betting
                 modelLogLosses.Add(modelLogLoss);
             }
             return modelLogLosses;
+        }
+        private bool LostBet(GameOddsData gameOddsData, int gameIndex, WINNER y)
+        {
+            return (gameOddsData.homeModelOdds[gameIndex].HomeOdds >= .5 && y == WINNER.away) || (gameOddsData.homeModelOdds[gameIndex].AwayOdds > .5 && y == WINNER.home);
+        }
+        private bool IsHomeWin(WINNER y)
+        {
+            return y == WINNER.home;
+        }
+        private bool IsAwayWin(WINNER y)
+        {
+            return y == WINNER.away;
         }
     }
 }
