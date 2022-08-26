@@ -37,7 +37,10 @@ namespace BusinessLogic.Betting
                         break;
                     var y = gameOddsData.TrueOutcomes[gameIndex];
                     if (LostBet(gameOddsData, gameIndex, y))
+                    {
+                        betResult -= betAmount;
                         break;
+                    }
                     if (IsHomeWin(y))
                         percentOdds = odds.HomeOdds;
                     else if (IsAwayWin(y))
