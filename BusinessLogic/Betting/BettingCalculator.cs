@@ -32,15 +32,14 @@ namespace BusinessLogic.Betting
                 double betResult = 0;
                 foreach (var odds in gameOddsData.OddsMap[key])
                 {
-                    // Remove once we add checking home model to repository
-                    if (odds.AwayOdds == 0 || odds.HomeOdds == 0)
-                        break;
                     var y = gameOddsData.TrueOutcomes[gameIndex];
                     if (LostBet(gameOddsData, gameIndex, y))
                     {
                         betResult -= betAmount;
-                        break;
+                        continue;
                     }
+                    if (SkipBet(gameOddsData, gameIndex))
+                        continue;
                     if (IsHomeWin(y))
                         percentOdds = odds.HomeOdds;
                     else if (IsAwayWin(y))
@@ -61,7 +60,12 @@ namespace BusinessLogic.Betting
         }
         private bool LostBet(GameOddsData gameOddsData, int gameIndex, WINNER y)
         {
-            return (gameOddsData.homeModelOdds[gameIndex].HomeOdds >= .5 && y == WINNER.away) || (gameOddsData.homeModelOdds[gameIndex].AwayOdds > .5 && y == WINNER.home);
+            return (gameOddsData.homeModelOdds[gameIndex].HomeOdds >= .5 && y == WINNER.away) ||
+                (gameOddsData.homeModelOdds[gameIndex].AwayOdds > .5 && y == WINNER.home);
+        }
+        private bool SkipBet(GameOddsData gameOddsData, int gameIndex)
+        {
+            return (gameOddsData.homeModelOdds[gameIndex].AwayOdds == 0 && gameOddsData.homeModelOdds[gameIndex].HomeOdds == 0);
         }
         private bool IsHomeWin(WINNER y)
         {
