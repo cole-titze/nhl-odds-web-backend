@@ -28,11 +28,12 @@ namespace BusinessLogic.Betting
             var modelLogLosses = new List<ModelBetResult>();
             foreach (var key in gameOddsData.OddsMap.Keys)
             {
-                int gameIndex = 0;
                 double betResult = 0;
-                foreach (var odds in gameOddsData.OddsMap[key])
+                for (int gameIndex = 0; gameIndex < gameOddsData.OddsMap[key].Count(); gameIndex++)
                 {
+                    var odds = gameOddsData.OddsMap[key][gameIndex];
                     var y = gameOddsData.TrueOutcomes[gameIndex];
+
                     if (LostBet(gameOddsData, gameIndex, y))
                     {
                         betResult -= betAmount;
@@ -47,7 +48,6 @@ namespace BusinessLogic.Betting
 
                     // Convert percentage to decimal odds and calculate winnings
                     betResult += (betAmount/percentOdds) - betAmount;
-                    gameIndex++;
                 }
                 var modelLogLoss = new ModelBetResult()
                 {
