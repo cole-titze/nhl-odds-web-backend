@@ -1,15 +1,16 @@
 # Get dotnet sdk
-FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build-env
-WORKDIR /app
+FROM mcr.microsoft.com/dotnet/sdk:6.0-alpine-arm64v8 AS build-env
+WORKDIR /api
 
 # Build app
 COPY . ./
-RUN ls
-RUN dotnet build WebApi -a arm64 --self-contained true --configuration Release --output out
+RUN dotnet publish WebApi -r linux-musl-arm64 -p:PublishSingleFile=true -c Release -o ./deploy
 
 # Generate image
-FROM mcr.microsoft.com/dotnet/aspnet:6.0
-WORKDIR /app
-COPY --from=build-env /app/out .
+FROM mcr.microsoft.com/dotnet/runtime-deps:6.0-alpine-arm64v8
+WORKDIR /api
+RUN addgroup -S apigroup && adduser -S apiuser 
+USER apiuser 
+COPY --from=build-env --chown=apiuser:apigroup /api/deploy/WebApi .
 EXPOSE 80
-ENTRYPOINT ["dotnet","WebApi.dll"]
+ENTRYPOINT ["./WebApi"]
