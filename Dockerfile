@@ -4,7 +4,7 @@ WORKDIR /api
 
 # Build app
 COPY . ./
-RUN dotnet publish WebApi -r linux-musl-arm64 -p:PublishSingleFile=true -c Release -o ./deploy
+RUN dotnet publish WebApi --self-contained -r linux-musl-arm64 -p:PublishSingleFile=true -c Release -o ./deploy
 
 # Generate image
 FROM mcr.microsoft.com/dotnet/runtime-deps:6.0-alpine-arm64v8
