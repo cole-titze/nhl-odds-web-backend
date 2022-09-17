@@ -12,6 +12,7 @@ if (_connectionString == null)
     _connectionString = builder.Configuration.GetConnectionString("PredictedGameDatabase");
 if (_connectionString == null)
     throw new Exception("Connection String Null");
+Console.WriteLine(_connectionString);
 
 // Add services to the container.
 builder.Services.AddScoped<ILogLossCalculator, LogLossCalculator>();
