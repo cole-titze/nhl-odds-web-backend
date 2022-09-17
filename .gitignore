@@ -353,3 +353,4 @@ WebApi/appsettings.Development.json
 */appsettings.Development.json
 
 .DS_Store
+.env
