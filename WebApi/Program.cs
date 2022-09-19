@@ -9,10 +9,9 @@ var builder = WebApplication.CreateBuilder(args);
 
 string? _connectionString = Environment.GetEnvironmentVariable("PREDICTED_GAME_DATABASE");
 if (_connectionString == null)
-    _connectionString = builder.Configuration.GetConnectionString("PredictedGameDatabase");
+    _connectionString = builder.Configuration.GetConnectionString("PREDICTED_GAME_DATABASE");
 if (_connectionString == null)
     throw new Exception("Connection String Null");
-Console.WriteLine(_connectionString);
 
 // Add services to the container.
 builder.Services.AddScoped<ILogLossCalculator, LogLossCalculator>();
