@@ -2,6 +2,7 @@
 using BusinessLogic.PredictedGameGetter;
 using DataAccess.PredictedGameRepository;
 using Microsoft.AspNetCore.Mvc;
+using WebApi.Mappers;
 
 namespace WebApi.Controllers
 {
@@ -21,7 +22,8 @@ namespace WebApi.Controllers
         public async Task<IResult> GetAllPredictedGames()
         {
             var predictedGames = await _predictedGameGetter.GetPredictedGames();
-            return Results.Ok(predictedGames);
+            var predictedGamesVM = PredictedGamesToViewModelsMapper.Map(predictedGames);
+            return Results.Ok(predictedGamesVM);
         }
         [HttpGet]
         public async Task<IResult> GetAllGamesOnDate([FromBody]DateTime day)
