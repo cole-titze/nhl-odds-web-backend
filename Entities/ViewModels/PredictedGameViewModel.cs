@@ -1,16 +1,14 @@
 ﻿using System;
+using Entities.Models;
+
 namespace Entities.ViewModels
 {
 	public class PredictedGameViewModel
 	{
-        public string homeTeamName { get; set; } = string.Empty;
-        public string awayTeamName { get; set; } = string.Empty;
+        public int id { get; set; }
         public DateTime gameDate { get; set; }
-        public double vegasHomeOdds { get; set; }
-        public double vegasAwayOdds { get; set; }
-        public double modelHomeOdds { get; set; }
-        public double modelAwayOdds { get; set; }
-        // Eventually add Should I bet based on vegas and model odds
+        public Team? homeTeam { get; set; }
+        public Team? awayTeam { get; set; }
     }
 }
 
