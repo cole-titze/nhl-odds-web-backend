@@ -8,7 +8,7 @@ namespace BusinessLogic.Mappers
     {
         public static LogLossData Map(IEnumerable<DbPredictedGame> predictedGames)
         {
-            var gameWinners = new List<WINNER>();
+            var gameWinners = new List<TEAM>();
             var oddsMap = new Dictionary<string, List<Odds>>();
             oddsMap.Add("HomeModel", new List<Odds>());
             oddsMap.Add("BovadaClosingVegasModel", new List<Odds>());

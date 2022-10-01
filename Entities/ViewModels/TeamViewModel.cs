@@ -1,7 +1,9 @@
 ﻿using System;
-namespace Entities.Models
+using Entities.DbModels;
+
+namespace Entities.ViewModels
 {
-	public class Team
+	public class TeamViewModel
 	{
         public int id { get; set; }
         public string locationName { get; set; } = string.Empty;
@@ -9,6 +11,8 @@ namespace Entities.Models
         public string logoUri { get; set; } = string.Empty;
         public double modelOdds { get; set; }
         public double vegasOdds { get; set; }
+        public int goals { get; set; }
+        public TEAM team { get; set; }
     }
 }
 

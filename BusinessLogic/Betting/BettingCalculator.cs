@@ -58,22 +58,22 @@ namespace BusinessLogic.Betting
             }
             return modelLogLosses;
         }
-        private bool LostBet(GameOddsData gameOddsData, int gameIndex, WINNER y)
+        private bool LostBet(GameOddsData gameOddsData, int gameIndex, TEAM y)
         {
-            return (gameOddsData.homeModelOdds[gameIndex].HomeOdds >= .5 && y == WINNER.away) ||
-                (gameOddsData.homeModelOdds[gameIndex].AwayOdds > .5 && y == WINNER.home);
+            return (gameOddsData.homeModelOdds[gameIndex].HomeOdds >= .5 && y == TEAM.away) ||
+                (gameOddsData.homeModelOdds[gameIndex].AwayOdds > .5 && y == TEAM.home);
         }
         private bool SkipBet(GameOddsData gameOddsData, int gameIndex)
         {
             return (gameOddsData.homeModelOdds[gameIndex].AwayOdds == 0 && gameOddsData.homeModelOdds[gameIndex].HomeOdds == 0);
         }
-        private bool IsHomeWin(WINNER y)
+        private bool IsHomeWin(TEAM y)
         {
-            return y == WINNER.home;
+            return y == TEAM.home;
         }
-        private bool IsAwayWin(WINNER y)
+        private bool IsAwayWin(TEAM y)
         {
-            return y == WINNER.away;
+            return y == TEAM.away;
         }
 
 
@@ -120,7 +120,7 @@ namespace BusinessLogic.Betting
             }
             return modelLogLosses;
         }
-        private bool LostBetOddsDifference(GameOddsData gameOddsData, Odds vegasOdds, int gameIndex, WINNER y)
+        private bool LostBetOddsDifference(GameOddsData gameOddsData, Odds vegasOdds, int gameIndex, TEAM y)
         {
             var myHomeOdds = gameOddsData.homeModelOdds[gameIndex].HomeOdds;
             var myAwayOdds = gameOddsData.homeModelOdds[gameIndex].AwayOdds;
@@ -129,8 +129,8 @@ namespace BusinessLogic.Betting
             //if (Math.Abs(vegasOdds.HomeOdds - myHomeOdds) < .03)
             //    return LostBet(gameOddsData, gameIndex, y);
 
-            return ((myHomeOdds >= vegasOdds.HomeOdds) && (y == WINNER.away)) ||
-                ((myAwayOdds > vegasOdds.AwayOdds) && (y == WINNER.home));
+            return ((myHomeOdds >= vegasOdds.HomeOdds) && (y == TEAM.away)) ||
+                ((myAwayOdds > vegasOdds.AwayOdds) && (y == TEAM.home));
         }
     }
 }
