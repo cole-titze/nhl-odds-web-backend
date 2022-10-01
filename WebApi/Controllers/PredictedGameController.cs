@@ -19,19 +19,12 @@ namespace WebApi.Controllers
             _logger = logger;
             _predictedGameGetter = predictedGameBL;
         }
-        [HttpGet]
-        public async Task<IResult> GetAllPredictedGames()
-        {
-            var predictedGames = await _predictedGameGetter.GetPredictedGames();
-            var predictedGamesVM = PredictedGamesToViewModelsMapper.Map(predictedGames);
-            return Results.Ok(predictedGamesVM);
-        }
-        [HttpGet]
-        public async Task<IResult> GetAllGamesOnDate([FromBody]DateTime day)
-        {
-            var predictedGames = await _predictedGameGetter.GetPredictedGamesOnDate(day);
-            return Results.Ok(predictedGames);
-        }
+        /// <summary>
+        /// Gets up to 25 games within the given start and end dates.
+        /// </summary>
+        /// <param name="startDate">Start Date for search</param>
+        /// <param name="endDate">End Date for search</param>
+        /// <returns>List of PredictedGameView Models that fall within the dates</returns>
         [HttpGet]
         public async Task<IResult> GetPredictedGamesInDateRange(DateTime startDate, DateTime endDate)
         {

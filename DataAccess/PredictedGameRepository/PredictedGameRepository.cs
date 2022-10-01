@@ -12,20 +12,6 @@ namespace DataAccess.PredictedGameRepository
         {
             _dbContext = dbContext;
         }
-        public async Task<IEnumerable<DbPredictedGame>> GetPredictedGames()
-        {
-            return await _dbContext.PredictedGame.Take(15)
-                                                .Include(x => x.awayTeam)
-                                                .Include(x => x.homeTeam)
-                                                .Include(x => x.cleanedGame)
-                                                .ToListAsync();
-        }
-        public async Task<IEnumerable<DbPredictedGame>> GetPredictedGamesOnDate(DateTime day)
-        {
-            return await _dbContext.PredictedGame.Where(x => x.gameDate.Date == day.Date)
-                                                .Include(x => x.cleanedGame)
-                                                .ToListAsync();
-        }
         // Get all valid predicted games that have been played
         public async Task<IEnumerable<DbPredictedGame>> GetFirstPredictedGamesOfYear(int year, int numberOfGames)
         {
