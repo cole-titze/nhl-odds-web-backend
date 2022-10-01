@@ -32,11 +32,15 @@ namespace Entities.DbModels
         public double modelAwayOdds { get; set; }
         [ForeignKey("id")]
         public DbCleanedGame cleanedGame { get; set; }
+        [ForeignKey("id")]
+        public DbGame game { get; set; }
 
         [ForeignKey("homeTeamId")]
         public DbTeam homeTeam { get; set; }
         [ForeignKey("awayTeamId")]
         public DbTeam awayTeam { get; set; }
+
+
     }
 }
 

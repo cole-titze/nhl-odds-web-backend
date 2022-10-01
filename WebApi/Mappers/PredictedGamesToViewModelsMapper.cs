@@ -11,30 +11,36 @@ namespace WebApi.Mappers
 			List<PredictedGameViewModel> viewModelGames = new List<PredictedGameViewModel>();
 			foreach(var game in games)
 			{
-				var awayTeam = new Team
+				var awayTeam = new TeamViewModel
 				{
 					id = game.awayTeamId,
 					locationName = game.awayTeam.locationName,
 					teamName = game.awayTeam.teamName,
 					logoUri = game.awayTeam.logoUri,
 					vegasOdds = game.bovadaOpeningVegasAwayOdds,
-					modelOdds = game.modelAwayOdds
+					modelOdds = game.modelAwayOdds,
+					goals = game.game.awayGoals,
+					team = TEAM.away
 				};
-                var homeTeam = new Team
+                var homeTeam = new TeamViewModel
                 {
                     id = game.homeTeamId,
                     locationName = game.homeTeam.locationName,
                     teamName = game.homeTeam.teamName,
                     logoUri = game.homeTeam.logoUri,
                     vegasOdds = game.bovadaOpeningVegasHomeOdds,
-                    modelOdds = game.modelHomeOdds
+                    modelOdds = game.modelHomeOdds,
+					goals = game.game.homeGoals,
+					team = TEAM.home
                 };
-                var viewModelGame = new PredictedGameViewModel
+				var viewModelGame = new PredictedGameViewModel
 				{
 					id = game.id,
 					gameDate = game.gameDate,
 					awayTeam = awayTeam,
-					homeTeam = homeTeam
+					homeTeam = homeTeam,
+					winner = game.cleanedGame.winner,
+					hasBeenPlayed = game.cleanedGame.hasBeenPlayed
 				};
 				viewModelGames.Add(viewModelGame);
 			}

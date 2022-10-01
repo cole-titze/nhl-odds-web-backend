@@ -7,7 +7,7 @@ namespace DataAccess.PredictedGameRepository
 	public class PredictedGameRepository : IPredictedGameRepository
 	{
         private readonly PredictedGameDbContext _dbContext;
-        private const int MAX_GAMES = 25;
+        private const int MAX_GAMES = 15;
         public PredictedGameRepository(PredictedGameDbContext dbContext)
         {
             _dbContext = dbContext;
@@ -50,6 +50,7 @@ namespace DataAccess.PredictedGameRepository
                                         .Include(x => x.cleanedGame)
                                         .Include(x => x.awayTeam)
                                         .Include(x => x.homeTeam)
+                                        .Include(x => x.game)
                                         .Take(MAX_GAMES)
                                         .ToListAsync();
         }
