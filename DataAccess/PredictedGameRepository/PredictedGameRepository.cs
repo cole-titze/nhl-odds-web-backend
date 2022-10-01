@@ -1,4 +1,5 @@
 ﻿using Entities.DbModels;
+using Entities.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace DataAccess.PredictedGameRepository
@@ -6,6 +7,7 @@ namespace DataAccess.PredictedGameRepository
 	public class PredictedGameRepository : IPredictedGameRepository
 	{
         private readonly PredictedGameDbContext _dbContext;
+        private const int MAX_GAMES = 25;
         public PredictedGameRepository(PredictedGameDbContext dbContext)
         {
             _dbContext = dbContext;
@@ -53,6 +55,17 @@ namespace DataAccess.PredictedGameRepository
                                                     .Where(x => x.cleanedGame.hasBeenPlayed == true)
                                                     .Take(numberOfGames)
                                                     .ToListAsync();
+        }
+
+        public async Task<IEnumerable<DbPredictedGame>> GetPredictedGamesInDateRange(DateRange dateRange)
+        {
+            return await _dbContext.PredictedGame.Where(x => (x.gameDate.Date >= dateRange.startDate && x.gameDate.Date <= dateRange.endDate))
+                                        .OrderByDescending(d => d.gameDate)
+                                        .Include(x => x.cleanedGame)
+                                        .Include(x => x.awayTeam)
+                                        .Include(x => x.homeTeam)
+                                        .Take(MAX_GAMES)
+                                        .ToListAsync();
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using BusinessLogic.LogLoss;
 using BusinessLogic.PredictedGameGetter;
 using DataAccess.PredictedGameRepository;
+using Entities.Models;
 using Microsoft.AspNetCore.Mvc;
 using WebApi.Mappers;
 
@@ -31,6 +32,17 @@ namespace WebApi.Controllers
             var predictedGames = await _predictedGameGetter.GetPredictedGamesOnDate(day);
             return Results.Ok(predictedGames);
         }
+        [HttpGet]
+        public async Task<IResult> GetPredictedGamesInDateRange(DateTime startDate, DateTime endDate)
+        {
+            var utcDateRange = new DateRange
+            {
+                startDate = startDate.ToUniversalTime(),
+                endDate = endDate.ToUniversalTime()
+            };
+            var predictedGames = await _predictedGameGetter.GetPredictedGamesInDateRange(utcDateRange);
+            var predictedGamesVM = PredictedGamesToViewModelsMapper.Map(predictedGames);
+            return Results.Ok(predictedGamesVM);
+        }
     }
 }
-

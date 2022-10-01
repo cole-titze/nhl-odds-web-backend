@@ -17,7 +17,7 @@ namespace WebApi.Mappers
 					locationName = game.awayTeam.locationName,
 					teamName = game.awayTeam.teamName,
 					logoUri = game.awayTeam.logoUri,
-					vegasOdds = game.myBookieOpeningVegasAwayOdds,
+					vegasOdds = game.bovadaOpeningVegasAwayOdds,
 					modelOdds = game.modelAwayOdds
 				};
                 var homeTeam = new Team
@@ -26,7 +26,7 @@ namespace WebApi.Mappers
                     locationName = game.homeTeam.locationName,
                     teamName = game.homeTeam.teamName,
                     logoUri = game.homeTeam.logoUri,
-                    vegasOdds = game.myBookieOpeningVegasHomeOdds,
+                    vegasOdds = game.bovadaOpeningVegasHomeOdds,
                     modelOdds = game.modelHomeOdds
                 };
                 var viewModelGame = new PredictedGameViewModel
