@@ -1,6 +1,7 @@
 ﻿using System;
 using DataAccess.PredictedGameRepository;
 using Entities.DbModels;
+using Entities.Models;
 
 namespace BusinessLogic.PredictedGameGetter
 {
@@ -13,14 +14,9 @@ namespace BusinessLogic.PredictedGameGetter
 			_predictedGameRepository = predictedGameRepository;
 		}
 
-        public Task<IEnumerable<DbPredictedGame>> GetPredictedGames()
+        public Task<IEnumerable<DbPredictedGame>> GetPredictedGamesInDateRange(DateRange dateRange)
         {
-            return _predictedGameRepository.GetPredictedGames();
-        }
-
-        public Task<IEnumerable<DbPredictedGame>> GetPredictedGamesOnDate(DateTime day)
-        {
-            return _predictedGameRepository.GetPredictedGamesOnDate(day);
+            return _predictedGameRepository.GetPredictedGamesInDateRange(dateRange);
         }
     }
 }
