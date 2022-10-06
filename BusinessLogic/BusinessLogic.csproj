@@ -7,14 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="LogLoss\" />
     <None Remove="PredictedGameGetter\" />
     <None Remove="Mappers\" />
     <None Remove="Betting\" />
     <None Remove="TeamGetter\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="LogLoss\" />
     <Folder Include="PredictedGameGetter\" />
     <Folder Include="Mappers\" />
     <Folder Include="Betting\" />
