@@ -1,8 +1,8 @@
 ﻿using System;
-namespace Entities.ViewModels
+namespace Entities.Models
 {
-	public class TeamViewModel
-	{
+    public class Team
+    {
         public int id { get; set; }
         public string locationName { get; set; } = string.Empty;
         public string teamName { get; set; } = string.Empty;

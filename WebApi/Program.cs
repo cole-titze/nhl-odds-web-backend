@@ -4,6 +4,9 @@ using Microsoft.EntityFrameworkCore;
 using BusinessLogic.LogLoss;
 using BusinessLogic.PredictedGameGetter;
 using BusinessLogic.Betting;
+using BusinessLogic.TeamGetter;
+using DataAccess.TeamRepository;
+using DataAccess.LogLossRepository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,12 +16,15 @@ if (_connectionString == null)
 if (_connectionString == null)
     throw new Exception("Connection String Null");
 
-// Add services to the container.
+// Add services to the container
+builder.Services.AddScoped<ITeamGetter, TeamGetter>();
 builder.Services.AddScoped<ILogLossCalculator, LogLossCalculator>();
 builder.Services.AddScoped<IPredictedGameGetter, PredictedGameGetter>();
 builder.Services.AddScoped<IBettingCalculator, BettingCalculator>();
+builder.Services.AddScoped<ILogLossRepository, LogLossRepository>();
+builder.Services.AddScoped<ITeamRepository, TeamRepository>();
 builder.Services.AddScoped<IPredictedGameRepository, PredictedGameRepository>();
-builder.Services.AddDbContext<PredictedGameDbContext>(x => x.UseSqlServer(_connectionString));
+builder.Services.AddDbContext<GameDbContext>(x => x.UseSqlServer(_connectionString));
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

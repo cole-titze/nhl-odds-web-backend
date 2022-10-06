@@ -11,7 +11,7 @@ namespace WebApi.Mappers
 			List<PredictedGameViewModel> viewModelGames = new List<PredictedGameViewModel>();
 			foreach(var game in games)
 			{
-				var awayTeam = new TeamViewModel
+				var awayTeam = new MatchupTeamViewModel
 				{
 					id = game.awayTeamId,
 					locationName = game.awayTeam.locationName,
@@ -22,7 +22,7 @@ namespace WebApi.Mappers
 					goals = game.game.awayGoals,
 					team = TEAM.away
 				};
-                var homeTeam = new TeamViewModel
+                var homeTeam = new MatchupTeamViewModel
                 {
                     id = game.homeTeamId,
                     locationName = game.homeTeam.locationName,

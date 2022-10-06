@@ -6,9 +6,9 @@ namespace DataAccess.PredictedGameRepository
 {
 	public class PredictedGameRepository : IPredictedGameRepository
 	{
-        private readonly PredictedGameDbContext _dbContext;
+        private readonly GameDbContext _dbContext;
         private const int MAX_GAMES = 15;
-        public PredictedGameRepository(PredictedGameDbContext dbContext)
+        public PredictedGameRepository(GameDbContext dbContext)
         {
             _dbContext = dbContext;
         }
