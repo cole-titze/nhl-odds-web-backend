@@ -1,5 +1,4 @@
-﻿using BusinessLogic.LogLoss;
-using BusinessLogic.PredictedGameGetter;
+﻿using BusinessLogic.PredictedGameGetter;
 using BusinessLogic.TeamGetter;
 using DataAccess.PredictedGameRepository;
 using Entities.Models;

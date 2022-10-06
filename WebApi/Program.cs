@@ -1,7 +1,6 @@
 ﻿using DataAccess.PredictedGameRepository;
 using DataAccess;
 using Microsoft.EntityFrameworkCore;
-using BusinessLogic.LogLoss;
 using BusinessLogic.PredictedGameGetter;
 using BusinessLogic.Betting;
 using BusinessLogic.TeamGetter;
@@ -18,7 +17,6 @@ if (_connectionString == null)
 
 // Add services to the container
 builder.Services.AddScoped<ITeamGetter, TeamGetter>();
-builder.Services.AddScoped<ILogLossCalculator, LogLossCalculator>();
 builder.Services.AddScoped<IPredictedGameGetter, PredictedGameGetter>();
 builder.Services.AddScoped<IBettingCalculator, BettingCalculator>();
 builder.Services.AddScoped<ILogLossRepository, LogLossRepository>();
