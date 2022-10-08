@@ -6,7 +6,7 @@ namespace DataAccess.Mappers
 {
     public static class TeamsDbToTeamsMapper
     {
-        public static IEnumerable<Team> Map(IEnumerable<DbTeam> dbTeams)
+        public static IList<Team> Map(IEnumerable<DbTeam> dbTeams)
         {
             var teamsList = new List<Team>();
             foreach(var dbTeam in dbTeams)

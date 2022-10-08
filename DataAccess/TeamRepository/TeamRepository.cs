@@ -13,7 +13,7 @@ namespace DataAccess.TeamRepository
         {
             _dbContext = dbContext;
         }
-        public async Task<IEnumerable<Team>> GetAllTeams()
+        public async Task<IList<Team>> GetAllTeams()
         {
             var dbTeams = await _dbContext.Team.ToListAsync();
             return TeamsDbToTeamsMapper.Map(dbTeams);

@@ -5,7 +5,7 @@ namespace DataAccess.TeamRepository
 {
 	public interface ITeamRepository
 	{
-        Task<IEnumerable<Team>> GetAllTeams();
+        Task<IList<Team>> GetAllTeams();
     }
 }
 
