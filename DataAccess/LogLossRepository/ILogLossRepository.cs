@@ -8,4 +8,3 @@ namespace DataAccess.LogLossRepository
         Task<IEnumerable<DbLogLoss>> GetAllLogLossesForSeason(int seasonStartYear);
     }
 }
-
