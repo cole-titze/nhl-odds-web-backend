@@ -31,16 +31,14 @@ namespace Entities.DbModels
         public double modelHomeOdds { get; set; }
         public double modelAwayOdds { get; set; }
         [ForeignKey("id")]
-        public DbCleanedGame cleanedGame { get; set; }
+        public DbCleanedGame cleanedGame { get; set; } = new DbCleanedGame();
         [ForeignKey("id")]
-        public DbGame game { get; set; }
+        public DbGame game { get; set; } = new DbGame();
 
         [ForeignKey("homeTeamId")]
-        public DbTeam homeTeam { get; set; }
+        public DbTeam homeTeam { get; set; } = new DbTeam();
         [ForeignKey("awayTeamId")]
-        public DbTeam awayTeam { get; set; }
-
-
+        public DbTeam awayTeam { get; set; } = new DbTeam();
     }
 }
 

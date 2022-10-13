@@ -9,7 +9,6 @@ namespace Entities.DbModels
         public double bovadaLogLoss { get; set; }
         public double modelLogLoss { get; set; }
         [ForeignKey("id")]
-        public DbGame game { get; set; }
+        public DbGame game { get; set; } = new DbGame();
     }
 }
-
