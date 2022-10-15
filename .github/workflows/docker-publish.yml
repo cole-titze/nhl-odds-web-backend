@@ -8,15 +8,15 @@ name: Docker
 on:
   workflow_run:
     workflows: ["Build and Test"]
-    types: [completed] #requested
-    tags: [ 'v*.*.*' ]
+    types: 
+      - completed
+  tags: [ 'v*.*.*' ]
 
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
 
 jobs:
-
   build_and_publish:
     runs-on: ubuntu-latest
     permissions:
