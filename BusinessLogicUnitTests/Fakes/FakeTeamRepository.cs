@@ -2,7 +2,7 @@
 using DataAccess.TeamRepository;
 using Entities.Models;
 
-namespace BusinessLogicUnitTests.Fakes
+namespace BusinessLogicTests.Fakes
 {
 	public class FakeTeamRepository : ITeamRepository
 	{

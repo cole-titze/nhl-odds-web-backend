@@ -2,7 +2,7 @@
 using DataAccess.LogLossRepository;
 using Entities.DbModels;
 
-namespace BusinessLogicUnitTests.Fakes
+namespace BusinessLogicTests.Fakes
 {
     public class FakeLogLossRepository : ILogLossRepository
     {

@@ -4,7 +4,7 @@ using Entities.DbModels;
 
 namespace DataAccess.Mappers
 {
-    public static class TeamsDbToTeamsMapper
+    public static class DbTeamsToTeamsMapper
     {
         public static IList<Team> Map(IEnumerable<DbTeam> dbTeams)
         {

@@ -1,4 +1,4 @@
-﻿namespace BusinessLogicUnitTests;
+﻿namespace BusinessLogicTests.UnitTests.TeamGetterTests;
 using FakeItEasy;
 using FluentAssertions;
 using DataAccess.TeamRepository;
@@ -6,7 +6,7 @@ using DataAccess.LogLossRepository;
 using BusinessLogic.TeamGetter;
 using Entities.Models;
 using Entities.DbModels;
-using BusinessLogicUnitTests.Fakes;
+using BusinessLogicTests.Fakes;
 using System.Diagnostics;
 
 [TestClass]

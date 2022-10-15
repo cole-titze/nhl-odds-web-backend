@@ -6,6 +6,7 @@
     <Nullable>enable</Nullable>
 
     <IsPackable>false</IsPackable>
+    <AssemblyName>BusinessLogicUnitTests</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
@@ -18,14 +19,18 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="TeamGetterTests\" />
     <None Remove="FakeItEasy" />
     <None Remove="FluentAssertions" />
     <None Remove="Fakes\" />
+    <None Remove="UnitTests\" />
+    <None Remove="UnitTests\TeamGetterTests\" />
+    <None Remove="UnitTests\PredictedGameGetterTests\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="TeamGetterTests\" />
     <Folder Include="Fakes\" />
+    <Folder Include="UnitTests\" />
+    <Folder Include="UnitTests\TeamGetterTests\" />
+    <Folder Include="UnitTests\PredictedGameGetterTests\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataAccess\DataAccess.csproj" />

@@ -16,7 +16,7 @@ namespace DataAccess.TeamRepository
         public async Task<IList<Team>> GetAllTeams()
         {
             var dbTeams = await _dbContext.Team.ToListAsync();
-            return TeamsDbToTeamsMapper.Map(dbTeams);
+            return DbTeamsToTeamsMapper.Map(dbTeams);
         }
     }
 }
