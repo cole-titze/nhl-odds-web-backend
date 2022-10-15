@@ -19,7 +19,7 @@ namespace WebApi.Controllers
             _predictedGameGetter = predictedGameBL;
         }
         /// <summary>
-        /// Gets up to 25 games within the given start and end dates.
+        /// Gets up to 15 games within the given start and end dates.
         /// </summary>
         /// <param name="startDate">Start Date for search</param>
         /// <param name="endDate">End Date for search</param>

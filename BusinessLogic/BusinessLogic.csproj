@@ -8,14 +8,10 @@
 
   <ItemGroup>
     <None Remove="PredictedGameGetter\" />
-    <None Remove="Mappers\" />
-    <None Remove="Betting\" />
     <None Remove="TeamGetter\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="PredictedGameGetter\" />
-    <Folder Include="Mappers\" />
-    <Folder Include="Betting\" />
     <Folder Include="TeamGetter\" />
   </ItemGroup>
   <ItemGroup>
