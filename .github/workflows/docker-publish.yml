@@ -6,23 +6,46 @@ name: Docker
 # documentation.
 
 on:
-  workflow_run:
-    workflows: ["Build and Test"]
-    types: 
-      - completed
+  push:
+    branches: [ main ]
     tags: [ 'v*.*.*' ]
+  pull_request:
+    branches: [ main ]
 
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
+  DOTNET_VERSION: '6.0.401' # The .NET SDK version to use for testing
 
 jobs:
+  test:
+    name: build-and-test-linux
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: ${{ env.DOTNET_VERSION }}
+
+    - name: Install dependencies
+      run: dotnet restore
+      
+    - name: Build
+      run: dotnet build --configuration Release --no-restore
+    
+    - name: Test
+      run: dotnet test --no-restore --verbosity normal
+
+
   build_and_publish:
+    needs: test
     runs-on: ubuntu-latest
     permissions:
       contents: read
       packages: write
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
