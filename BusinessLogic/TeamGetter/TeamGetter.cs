@@ -25,12 +25,12 @@ namespace BusinessLogic.TeamGetter
         {
             var logLosses = await _logLossRepository.GetAllLogLossesForSeason(startYear);
             var teams = await GetAllTeams();
-            teams = buildTeamLogLosses(teams, logLosses);
+            teams = BuildTeamLogLosses(teams, logLosses);
 
             return teams;
         }
 
-        private IList<Team> buildTeamLogLosses(IList<Team> teams, IEnumerable<DbLogLoss> logLosses)
+        private IList<Team> BuildTeamLogLosses(IList<Team> teams, IEnumerable<DbLogLoss> logLosses)
         {
             var teamsToRemove = new List<Team>();
             foreach(var team in teams)
