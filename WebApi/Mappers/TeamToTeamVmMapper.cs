@@ -4,7 +4,7 @@ using Entities.ViewModels;
 
 namespace WebApi.Mappers
 {
-	public static class TeamDbToTeamVmMapper
+	public static class TeamToTeamVmMapper
 	{
         public static IEnumerable<TeamViewModel> Map(IEnumerable<Team> teams)
         {
