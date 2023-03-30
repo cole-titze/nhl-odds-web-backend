@@ -1,5 +1,4 @@
-﻿using System;
-using DataAccess.PredictedGameRepository;
+﻿using DataAccess.PredictedGameRepository;
 using Entities.DbModels;
 using Entities.Models;
 

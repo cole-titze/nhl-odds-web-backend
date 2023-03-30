@@ -1,12 +1,7 @@
 ﻿namespace BusinessLogicTests.UnitTests.TeamGetterTests;
-using FakeItEasy;
 using FluentAssertions;
-using DataAccess.TeamRepository;
-using DataAccess.LogLossRepository;
-using BusinessLogic.TeamGetter;
 using Entities.Models;
 using Entities.DbModels;
-using System.Diagnostics;
 using BusinessLogic.PredictedGameGetter;
 using BusinessLogicTests.Fakes;
 
@@ -79,6 +74,16 @@ public class PredictedGameGetterUnitTests
 
         var games = await cut.GetPredictedGamesInDateRange(dateRange);
         games.Should().HaveCount(5);
+    }
+    [TestMethod]
+    public async Task CallToGetPredictedGamesInDateRange_WitZeroGamesInDateRangeAndZeroGamesOutOfDateRange_ShouldGetZeroGames()
+    {
+        int numberOfGamesInDateRange = 0;
+        int numberOfGamesOutOfDateRange = 0;
+        var cut = Factory(numberOfGamesInDateRange, numberOfGamesOutOfDateRange);
+
+        var games = await cut.GetPredictedGamesInDateRange(dateRange);
+        games.Should().HaveCount(0);
     }
 }
 

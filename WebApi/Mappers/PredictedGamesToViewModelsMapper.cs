@@ -1,10 +1,8 @@
-﻿using System;
-using Entities.DbModels;
-using Entities.Models;
+﻿using Entities.DbModels;
 using Entities.ViewModels;
 namespace WebApi.Mappers
 {
-	public static class PredictedGamesToViewModelsMapper
+    public static class PredictedGamesToViewModelsMapper
 	{
 		public static IEnumerable<PredictedGameViewModel> Map(IEnumerable<DbPredictedGame> games)
 		{

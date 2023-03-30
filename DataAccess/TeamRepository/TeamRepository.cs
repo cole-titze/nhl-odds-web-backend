@@ -1,6 +1,4 @@
-﻿using System;
-using Entities.DbModels;
-using Entities.Models;
+﻿using Entities.Models;
 using Microsoft.EntityFrameworkCore;
 using DataAccess.Mappers;
 

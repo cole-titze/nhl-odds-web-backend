@@ -1,5 +1,4 @@
-﻿using System;
-namespace Entities.Models
+﻿namespace Entities.Models
 {
     public class Team
     {

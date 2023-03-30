@@ -1,7 +1,4 @@
-﻿using BusinessLogic.PredictedGameGetter;
-using BusinessLogic.TeamGetter;
-using DataAccess.PredictedGameRepository;
-using Entities.Models;
+﻿using BusinessLogic.TeamGetter;
 using Microsoft.AspNetCore.Mvc;
 using WebApi.Mappers;
 

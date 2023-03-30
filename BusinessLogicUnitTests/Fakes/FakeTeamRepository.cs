@@ -1,10 +1,9 @@
-﻿using System;
-using DataAccess.TeamRepository;
+﻿using DataAccess.TeamRepository;
 using Entities.Models;
 
 namespace BusinessLogicTests.Fakes
 {
-	public class FakeTeamRepository : ITeamRepository
+    public class FakeTeamRepository : ITeamRepository
 	{
         private IList<Team> _teams { get; set; } = new List<Team>();
         public FakeTeamRepository(List<Team> teams)

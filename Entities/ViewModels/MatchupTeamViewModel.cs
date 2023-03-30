@@ -1,9 +1,8 @@
-﻿using System;
-using Entities.DbModels;
+﻿using Entities.DbModels;
 
 namespace Entities.ViewModels
 {
-	public class MatchupTeamViewModel
+    public class MatchupTeamViewModel
 	{
         public int id { get; set; }
         public string locationName { get; set; } = string.Empty;

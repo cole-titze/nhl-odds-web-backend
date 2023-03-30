@@ -1,9 +1,8 @@
-﻿using System;
-using Entities.Models;
+﻿using Entities.Models;
 
 namespace DataAccess.TeamRepository
 {
-	public interface ITeamRepository
+    public interface ITeamRepository
 	{
         Task<IList<Team>> GetAllTeams();
     }

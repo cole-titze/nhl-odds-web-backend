@@ -1,7 +1,5 @@
 ﻿using DataAccess.Mappers;
 using Entities.DbModels;
-using Entities.Models;
-using FakeItEasy;
 using FluentAssertions;
 
 namespace DataAccessTests.UnitTests.Mappers;

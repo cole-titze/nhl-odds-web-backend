@@ -1,5 +1,4 @@
-﻿using System;
-using DataAccess.LogLossRepository;
+﻿using DataAccess.LogLossRepository;
 using DataAccess.TeamRepository;
 using Entities.DbModels;
 using Entities.Models;

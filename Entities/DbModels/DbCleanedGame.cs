@@ -1,7 +1,6 @@
-﻿using System;
-namespace Entities.DbModels
+﻿namespace Entities.DbModels
 {
-	public class DbCleanedGame
+    public class DbCleanedGame
 	{
         public int id { get; set; }
         public TEAM winner { get; set; }

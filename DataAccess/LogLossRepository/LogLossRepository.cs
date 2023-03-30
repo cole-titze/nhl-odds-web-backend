@@ -1,11 +1,9 @@
-﻿using System;
-using DataAccess.Mappers;
-using Entities.DbModels;
+﻿using Entities.DbModels;
 using Microsoft.EntityFrameworkCore;
 
 namespace DataAccess.LogLossRepository
 {
-	public class LogLossRepository : ILogLossRepository
+    public class LogLossRepository : ILogLossRepository
 	{
         private readonly GameDbContext _dbContext;
         public LogLossRepository(GameDbContext dbContext)

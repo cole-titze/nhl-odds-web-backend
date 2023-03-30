@@ -1,9 +1,6 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations.Schema;
-
-namespace Entities.DbModels
+﻿namespace Entities.DbModels
 {
-	public class DbGame
+    public class DbGame
 	{
 		public int id { get; set; }
         public int homeTeamId { get; set; }

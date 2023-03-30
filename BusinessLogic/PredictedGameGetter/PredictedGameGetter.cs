@@ -1,11 +1,10 @@
-﻿using System;
-using DataAccess.PredictedGameRepository;
+﻿using DataAccess.PredictedGameRepository;
 using Entities.DbModels;
 using Entities.Models;
 
 namespace BusinessLogic.PredictedGameGetter
 {
-	public class PredictedGameGetter : IPredictedGameGetter
+    public class PredictedGameGetter : IPredictedGameGetter
 	{
         private readonly IPredictedGameRepository _predictedGameRepository;
 
