@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccess", "DataAccess\Da
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BusinessLogic", "BusinessLogic\BusinessLogic.csproj", "{F734F3E3-5CEF-4050-BDC4-8CF900EF464D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BusinessLogicTests", "BusinessLogicUnitTests\BusinessLogicTests.csproj", "{E3E2607A-0B22-49C6-943D-028C081B187C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BusinessLogicTests", "BusinessLogicTests\BusinessLogicTests.csproj", "{E3E2607A-0B22-49C6-943D-028C081B187C}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccessTests", "DataAccessTests\DataAccessTests.csproj", "{6B7865AC-04EB-49FE-9C5D-6BCD0C7E68DF}"
 EndProject
