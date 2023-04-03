@@ -2,7 +2,7 @@
 
 namespace Entities.ViewModels
 {
-    public class PredictedGameViewModel
+    public class GameOddsViewModel
 	{
         public int id { get; set; }
         public DateTime gameDate { get; set; }

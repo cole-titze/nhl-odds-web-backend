@@ -2,11 +2,11 @@
 using Entities.ViewModels;
 namespace WebApi.Mappers
 {
-    public static class PredictedGamesToViewModelsMapper
+    public static class GameOddsToViewModelsMapper
 	{
-		public static IEnumerable<PredictedGameViewModel> Map(IEnumerable<DbGameOdds> games)
+		public static IEnumerable<GameOddsViewModel> Map(IEnumerable<DbGameOdds> games)
 		{
-			List<PredictedGameViewModel> viewModelGames = new List<PredictedGameViewModel>();
+			List<GameOddsViewModel> viewModelGames = new List<GameOddsViewModel>();
 			foreach(var gameOdds in games)
 			{
 				var awayTeam = new MatchupTeamViewModel
@@ -31,7 +31,7 @@ namespace WebApi.Mappers
 					goals = gameOdds.game.homeGoals,
 					team = TEAM.home
                 };
-				var viewModelGame = new PredictedGameViewModel
+				var viewModelGame = new GameOddsViewModel
 				{
 					id = gameOdds.gameId,
 					gameDate = gameOdds.game.gameDate,

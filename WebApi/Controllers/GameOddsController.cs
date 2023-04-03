@@ -32,7 +32,7 @@ namespace WebApi.Controllers
                 endDate = endDate.ToUniversalTime()
             };
             var predictedGames = await _gameOddsGetter.GetGameOddsInDateRange(utcDateRange);
-            var predictedGamesVM = PredictedGamesToViewModelsMapper.Map(predictedGames);
+            var predictedGamesVM = GameOddsToViewModelsMapper.Map(predictedGames);
             return Results.Ok(predictedGamesVM);
         }
     }

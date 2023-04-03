@@ -16,7 +16,11 @@ namespace WebApi.Controllers
             _logger = logger;
             _teamGetter = predictedGameBL;
         }
-
+        /// <summary>
+        /// Gets log losses of teams for a given season
+        /// </summary>
+        /// <param name="seasonStartYear">The season to get stats on</param>
+        /// <returns>A list of team view models that hold the log losses for the year</returns>
         [HttpGet]
         public async Task<IResult> GetAllTeams(int seasonStartYear)
         {

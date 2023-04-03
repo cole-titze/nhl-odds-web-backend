@@ -66,7 +66,7 @@ jobs:
       - name: Get web api badge
         run: |
           ${{ env.GET_COLOR }}
-          total=$(cat entryCoverage.xml | grep -oP 'package name="WebApi" line-rate="\K[^"]+')
+          total=$(webapiCoverage.xml | grep -oP 'package name="WebApi" line-rate="\K[^"]+')
           total=$(echo "scale=0; $total*100/1" | bc)
           getColor $total > COLOR
           curl "https://img.shields.io/badge/Web%20Api%20Test%20Coverage-$total%25-$COLOR" > ./badges/nhlOddsWebBackedEntryBadge.svg
