@@ -1,25 +1,28 @@
-﻿using DataAccess.PredictedGameRepository;
+﻿using DataAccess.GameOddsRepository;
 using DataAccess;
 using Microsoft.EntityFrameworkCore;
-using BusinessLogic.PredictedGameGetter;
+using BusinessLogic.GameOddsGetter;
 using BusinessLogic.TeamGetter;
 using DataAccess.TeamRepository;
 using DataAccess.LogLossRepository;
 
 var builder = WebApplication.CreateBuilder(args);
 
-string? _connectionString = Environment.GetEnvironmentVariable("PREDICTED_GAME_DATABASE");
+string? _connectionString = Environment.GetEnvironmentVariable("NHL_DATABASE");
 if (_connectionString == null)
-    _connectionString = builder.Configuration.GetConnectionString("PREDICTED_GAME_DATABASE");
+{
+    var config = new ConfigurationBuilder().AddJsonFile("appsettings.Development.json").Build();
+    _connectionString = config.GetConnectionString("NHL_DATABASE");
+}
 if (_connectionString == null)
     throw new Exception("Connection String Null");
 
 // Add services to the container
 builder.Services.AddScoped<ITeamGetter, TeamGetter>();
-builder.Services.AddScoped<IPredictedGameGetter, PredictedGameGetter>();
+builder.Services.AddScoped<IGameOddsGetter, GameOddsGetter>();
 builder.Services.AddScoped<ILogLossRepository, LogLossRepository>();
 builder.Services.AddScoped<ITeamRepository, TeamRepository>();
-builder.Services.AddScoped<IPredictedGameRepository, PredictedGameRepository>();
+builder.Services.AddScoped<IGameOddsRepository, GameOddsRepository>();
 builder.Services.AddDbContext<GameDbContext>(x => x.UseSqlServer(_connectionString));
 
 builder.Services.AddControllers();

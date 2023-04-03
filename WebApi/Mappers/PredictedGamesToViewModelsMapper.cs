@@ -4,41 +4,41 @@ namespace WebApi.Mappers
 {
     public static class PredictedGamesToViewModelsMapper
 	{
-		public static IEnumerable<PredictedGameViewModel> Map(IEnumerable<DbPredictedGame> games)
+		public static IEnumerable<PredictedGameViewModel> Map(IEnumerable<DbGameOdds> games)
 		{
 			List<PredictedGameViewModel> viewModelGames = new List<PredictedGameViewModel>();
-			foreach(var game in games)
+			foreach(var gameOdds in games)
 			{
 				var awayTeam = new MatchupTeamViewModel
 				{
-					id = game.awayTeamId,
-					locationName = game.awayTeam.locationName,
-					teamName = game.awayTeam.teamName,
-					logoUri = game.awayTeam.logoUri,
-					vegasOdds = game.bovadaOpeningVegasAwayOdds,
-					modelOdds = game.modelAwayOdds,
-					goals = game.game.awayGoals,
+					id = gameOdds.game.awayTeamId,
+					locationName = gameOdds.game.awayTeam.locationName,
+					teamName = gameOdds.game.awayTeam.teamName,
+					logoUri = gameOdds.game.awayTeam.logoUri,
+					vegasOdds = gameOdds.bovadaOpeningVegasAwayOdds,
+					modelOdds = gameOdds.modelAwayOdds,
+					goals = gameOdds.game.awayGoals,
 					team = TEAM.away
 				};
                 var homeTeam = new MatchupTeamViewModel
                 {
-                    id = game.homeTeamId,
-                    locationName = game.homeTeam.locationName,
-                    teamName = game.homeTeam.teamName,
-                    logoUri = game.homeTeam.logoUri,
-                    vegasOdds = game.bovadaOpeningVegasHomeOdds,
-                    modelOdds = game.modelHomeOdds,
-					goals = game.game.homeGoals,
+                    id = gameOdds.game.homeTeamId,
+                    locationName = gameOdds.game.homeTeam.locationName,
+                    teamName = gameOdds.game.homeTeam.teamName,
+                    logoUri = gameOdds.game.homeTeam.logoUri,
+                    vegasOdds = gameOdds.bovadaOpeningVegasHomeOdds,
+                    modelOdds = gameOdds.modelHomeOdds,
+					goals = gameOdds.game.homeGoals,
 					team = TEAM.home
                 };
 				var viewModelGame = new PredictedGameViewModel
 				{
-					id = game.id,
-					gameDate = game.gameDate,
+					id = gameOdds.gameId,
+					gameDate = gameOdds.game.gameDate,
 					awayTeam = awayTeam,
 					homeTeam = homeTeam,
-					winner = game.cleanedGame.winner,
-					hasBeenPlayed = game.cleanedGame.hasBeenPlayed
+					winner = gameOdds.game.winner,
+					hasBeenPlayed = gameOdds.game.hasBeenPlayed
 				};
 				viewModelGames.Add(viewModelGame);
 			}

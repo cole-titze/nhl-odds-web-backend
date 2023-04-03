@@ -8,10 +8,10 @@ namespace WebApi.Controllers
     [ApiController]
     public class TeamController
     {
-        private readonly ILogger<PredictedGameController> _logger;
+        private readonly ILogger<GameOddsController> _logger;
         private readonly ITeamGetter _teamGetter;
 
-        public TeamController(ILogger<PredictedGameController> logger, ITeamGetter predictedGameBL)
+        public TeamController(ILogger<GameOddsController> logger, ITeamGetter predictedGameBL)
         {
             _logger = logger;
             _teamGetter = predictedGameBL;

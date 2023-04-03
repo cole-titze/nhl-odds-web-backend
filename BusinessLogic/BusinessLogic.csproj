@@ -7,12 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="PredictedGameGetter\" />
     <None Remove="TeamGetter\" />
+    <None Remove="GameOddsGetter\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="PredictedGameGetter\" />
     <Folder Include="TeamGetter\" />
+    <Folder Include="GameOddsGetter\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Entities\Entities.csproj" />

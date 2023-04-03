@@ -1,13 +1,12 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Entities.DbModels
 {
-    public class DbPredictedGame
+    public class DbGameOdds
     {
-        public int id { get; set; }
-        public int homeTeamId { get; set; }
-        public int awayTeamId { get; set; }
-        public DateTime gameDate { get; set; }
+        [Key]
+        public int gameId { get; set; }
         public double bovadaClosingVegasHomeOdds { get; set; }
         public double bovadaClosingVegasAwayOdds { get; set; }
         public double myBookieClosingVegasHomeOdds { get; set; }
@@ -30,15 +29,8 @@ namespace Entities.DbModels
         public double bet365OpeningVegasAwayOdds { get; set; }
         public double modelHomeOdds { get; set; }
         public double modelAwayOdds { get; set; }
-        [ForeignKey("id")]
-        public DbCleanedGame cleanedGame { get; set; } = new DbCleanedGame();
-        [ForeignKey("id")]
+        [ForeignKey("gameId")]
         public DbGame game { get; set; } = new DbGame();
-
-        [ForeignKey("homeTeamId")]
-        public DbTeam homeTeam { get; set; } = new DbTeam();
-        [ForeignKey("awayTeamId")]
-        public DbTeam awayTeam { get; set; } = new DbTeam();
     }
 }
 

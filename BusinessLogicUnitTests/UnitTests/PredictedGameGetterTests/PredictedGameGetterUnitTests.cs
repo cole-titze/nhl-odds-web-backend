@@ -2,11 +2,11 @@
 using FluentAssertions;
 using Entities.Models;
 using Entities.DbModels;
-using BusinessLogic.PredictedGameGetter;
+using BusinessLogic.GameOddsGetter;
 using BusinessLogicTests.Fakes;
 
 [TestClass]
-public class PredictedGameGetterUnitTests
+public class GameOddsGetterUnitTests
 {
     private DateRange dateRange = new DateRange()
     {
@@ -15,33 +15,39 @@ public class PredictedGameGetterUnitTests
     };
     private DateTime dateInRange = DateTime.Parse("1/1/2005");
     private DateTime dateOutOfRange = DateTime.Parse("1/1/2020");
-    public List<DbPredictedGame> GamesFactory(int numberOfGamesInDateRange, int numberOfGamesOutOfDateRange)
+    public List<DbGameOdds> GamesFactory(int numberOfGamesInDateRange, int numberOfGamesOutOfDateRange)
     {
-        var gameList = new List<DbPredictedGame>();
+        var gameList = new List<DbGameOdds>();
         for (int i = 0; i < numberOfGamesInDateRange; i++)
         {
-            var game = new DbPredictedGame()
+            var game = new DbGameOdds()
             {
-                gameDate = dateInRange
+                game = new DbGame()
+                {
+                    gameDate = dateInRange
+                }
             };
             gameList.Add(game);
         }
         for (int i = 0; i < numberOfGamesOutOfDateRange; i++)
         {
-            var game = new DbPredictedGame()
+            var game = new DbGameOdds()
             {
-                gameDate = dateOutOfRange
+                game = new DbGame()
+                {
+                    gameDate = dateOutOfRange
+                }
             };
             gameList.Add(game);
         }
         return gameList;
     }
-    public PredictedGameGetter Factory(int numberOfGamesInDateRange, int numberOfGamesOutOfDateRange)
+    public GameOddsGetter Factory(int numberOfGamesInDateRange, int numberOfGamesOutOfDateRange)
     {
         var gameList = GamesFactory(numberOfGamesInDateRange, numberOfGamesOutOfDateRange);
-        var gameRepo = new FakePredictedGameRepository(gameList);
+        var gameRepo = new FakeGameOddsRepository(gameList);
 
-        var cut = new PredictedGameGetter(gameRepo);
+        var cut = new GameOddsGetter(gameRepo);
 
         return cut;
     }
@@ -52,7 +58,7 @@ public class PredictedGameGetterUnitTests
         int numberOfGamesOutOfDateRange = 5;
         var cut = Factory(numberOfGamesInDateRange, numberOfGamesOutOfDateRange);
 
-        var games = await cut.GetPredictedGamesInDateRange(dateRange);
+        var games = await cut.GetGameOddsInDateRange(dateRange);
         games.Should().HaveCount(0);
     }
     [TestMethod]
@@ -62,7 +68,7 @@ public class PredictedGameGetterUnitTests
         int numberOfGamesOutOfDateRange = 0;
         var cut = Factory(numberOfGamesInDateRange, numberOfGamesOutOfDateRange);
 
-        var games = await cut.GetPredictedGamesInDateRange(dateRange);
+        var games = await cut.GetGameOddsInDateRange(dateRange);
         games.Should().HaveCount(5);
     }
     [TestMethod]
@@ -72,7 +78,7 @@ public class PredictedGameGetterUnitTests
         int numberOfGamesOutOfDateRange = 50;
         var cut = Factory(numberOfGamesInDateRange, numberOfGamesOutOfDateRange);
 
-        var games = await cut.GetPredictedGamesInDateRange(dateRange);
+        var games = await cut.GetGameOddsInDateRange(dateRange);
         games.Should().HaveCount(5);
     }
     [TestMethod]
@@ -82,7 +88,7 @@ public class PredictedGameGetterUnitTests
         int numberOfGamesOutOfDateRange = 0;
         var cut = Factory(numberOfGamesInDateRange, numberOfGamesOutOfDateRange);
 
-        var games = await cut.GetPredictedGamesInDateRange(dateRange);
+        var games = await cut.GetGameOddsInDateRange(dateRange);
         games.Should().HaveCount(0);
     }
 }

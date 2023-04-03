@@ -1,13 +1,15 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Entities.DbModels
 {
     public class DbLogLoss
 	{
-        public int id { get; set; }
+        [Key]
+        public int gameId { get; set; }
         public double bovadaLogLoss { get; set; }
         public double modelLogLoss { get; set; }
-        [ForeignKey("id")]
+        [ForeignKey("gameId")]
         public DbGame game { get; set; } = new DbGame();
     }
 }
