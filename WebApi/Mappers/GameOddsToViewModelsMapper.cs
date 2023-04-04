@@ -4,6 +4,11 @@ namespace WebApi.Mappers
 {
     public static class GameOddsToViewModelsMapper
 	{
+		/// <summary>
+		/// Converts Game odds into a view model for the frontend to use
+		/// </summary>
+		/// <param name="games">The game odds to convert</param>
+		/// <returns>View model for displaying game odds</returns>
 		public static IEnumerable<GameOddsViewModel> Map(IEnumerable<DbGameOdds> games)
 		{
 			List<GameOddsViewModel> viewModelGames = new List<GameOddsViewModel>();

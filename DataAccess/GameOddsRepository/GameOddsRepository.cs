@@ -12,7 +12,11 @@ namespace DataAccess.GameOddsRepository
         {
             _dbContext = dbContext;
         }
-
+        /// <summary>
+        /// Gets the game odds for all games within a given date range from the database
+        /// </summary>
+        /// <param name="dateRange">The date range to find games within</param>
+        /// <returns>List of game odds</returns>
         public async Task<IEnumerable<DbGameOdds>> GetGameOddsInDateRange(DateRange dateRange)
         {
             return await _dbContext.GameOdds.Where(x => (x.game.gameDate.Date >= dateRange.startDate && x.game.gameDate.Date <= dateRange.endDate))

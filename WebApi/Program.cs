@@ -24,6 +24,7 @@ builder.Services.AddScoped<ILogLossRepository, LogLossRepository>();
 builder.Services.AddScoped<ITeamRepository, TeamRepository>();
 builder.Services.AddScoped<IGameOddsRepository, GameOddsRepository>();
 builder.Services.AddDbContext<GameDbContext>(x => x.UseSqlServer(_connectionString));
+builder.Services.AddLogging();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

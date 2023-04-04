@@ -11,6 +11,10 @@ namespace DataAccess.TeamRepository
         {
             _dbContext = dbContext;
         }
+        /// <summary>
+        /// Gets all teams from the database
+        /// </summary>
+        /// <returns>List of teams</returns>
         public async Task<IList<Team>> GetAllTeams()
         {
             var dbTeams = await _dbContext.Team.ToListAsync();

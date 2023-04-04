@@ -19,7 +19,11 @@ namespace BusinessLogic.TeamGetter
         {
             return await _teamRepository.GetAllTeams();
         }
-
+        /// <summary>
+        /// Builds the log losses into the Team object
+        /// </summary>
+        /// <param name="startYear">The year to get the log loss from</param>
+        /// <returns>List of filled teams</returns>
         public async Task<IEnumerable<Team>> BuildLogLosses(int startYear)
         {
             var logLosses = await _logLossRepository.GetAllLogLossesForSeason(startYear);
@@ -28,14 +32,19 @@ namespace BusinessLogic.TeamGetter
 
             return teams;
         }
-
-        private IList<Team> BuildTeamLogLosses(IList<Team> teams, IEnumerable<DbLogLoss> logLosses)
+        /// <summary>
+        /// Finds the season log loss for each team. If a team has no log losses they are removed from the list
+        /// </summary>
+        /// <param name="teams">The teams to calculate the log loss for</param>
+        /// <param name="logLosses">Game log losses</param>
+        /// <returns>List of filled teams</returns>
+        private static IList<Team> BuildTeamLogLosses(IList<Team> teams, IEnumerable<DbLogLoss> logLosses)
         {
             var teamsToRemove = new List<Team>();
             foreach(var team in teams)
             {
                 var teamLogLosses = logLosses.Where(x => (x.game.awayTeamId == team.id || x.game.homeTeamId == team.id)).ToList();
-                if (teamLogLosses.Count() == 0)
+                if (teamLogLosses.Count == 0)
                 {
                     teamsToRemove.Add(team);
                     continue;
@@ -46,8 +55,8 @@ namespace BusinessLogic.TeamGetter
                     team.vegasLogLoss += logLoss.bovadaLogLoss;
                     team.modelLogLoss += logLoss.modelLogLoss;
                 }
-                team.vegasLogLoss /= teamLogLosses.Count();
-                team.modelLogLoss /= teamLogLosses.Count();
+                team.vegasLogLoss /= teamLogLosses.Count;
+                team.modelLogLoss /= teamLogLosses.Count;
             }
             foreach(var team in teamsToRemove)
             {
