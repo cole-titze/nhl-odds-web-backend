@@ -11,5 +11,5 @@
 ![cod cov](https://nhlblobstorage.blob.core.windows.net/repobadges/nhlOddsWebBackedWebApiBadge.svg)
 ![cod cov](https://nhlblobstorage.blob.core.windows.net/repobadges/nhlOddsWebBackedDataAccessBadge.svg)
 
-# nhl-odds-web-backend
+# [nhl-odds-web-backend](https://github.com/cole-titze/nhl-odds-web-backend/wiki/Nhl-Odds-Web-Backend)
 Backend Api for getting nhl odds from database. Other jobs populate my predictions and vegas predictions. This endpoint is for a frontend to get and display the odds.
