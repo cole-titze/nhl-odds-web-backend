@@ -62,8 +62,6 @@ namespace BusinessLogic.TeamGetter
             foreach(var teamStats in teamsStats)
             {
                 var teamLogLosses = logLosses.Where(x => (x.game.awayTeamId == teamStats.team.id || x.game.homeTeamId == teamStats.team.id)).ToList();
-                if (teamLogLosses.Count == 0)
-                    continue;
 
                 BuildTeamLogLoss(teamStats, teamLogLosses);
             }
