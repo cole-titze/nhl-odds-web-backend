@@ -1,10 +1,10 @@
 ﻿using Entities.DbModels;
-using Entities.Models;
+using Entities.Types;
 
 namespace BusinessLogic.GameOddsGetter
 {
     public interface IGameOddsGetter
     {
-        Task<IEnumerable<DbGameOdds>> GetGameOddsInDateRange(DateRange dateRange);
+        Task<IEnumerable<GameOdds>> GetGameOddsInDateRange(DateRange dateRange);
     }
 }

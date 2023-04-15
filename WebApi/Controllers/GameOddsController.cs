@@ -1,5 +1,5 @@
 ﻿using BusinessLogic.GameOddsGetter;
-using Entities.Models;
+using Entities.Types;
 using Microsoft.AspNetCore.Mvc;
 using WebApi.Mappers;
 

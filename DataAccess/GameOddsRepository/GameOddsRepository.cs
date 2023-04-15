@@ -1,5 +1,6 @@
-﻿using Entities.DbModels;
-using Entities.Models;
+﻿using DataAccess.GameOddsRepository.Mappers;
+using Entities.DbModels;
+using Entities.Types;
 using Microsoft.EntityFrameworkCore;
 
 namespace DataAccess.GameOddsRepository
@@ -17,14 +18,16 @@ namespace DataAccess.GameOddsRepository
         /// </summary>
         /// <param name="dateRange">The date range to find games within</param>
         /// <returns>List of game odds</returns>
-        public async Task<IEnumerable<DbGameOdds>> GetGameOddsInDateRange(DateRange dateRange)
+        public async Task<IEnumerable<GameOdds>> GetGameOddsInDateRange(DateRange dateRange)
         {
-            return await _dbContext.GameOdds.Where(x => (x.game.gameDate.Date >= dateRange.startDate && x.game.gameDate.Date <= dateRange.endDate))
+            var dbGameOdds = await _dbContext.GameOdds.Where(x => (x.game.gameDate.Date >= dateRange.startDate && x.game.gameDate.Date <= dateRange.endDate))
                                         .OrderByDescending(d => d.game.gameDate)
                                         .Include(x => x.game).ThenInclude(x => x.awayTeam)
                                         .Include(x => x.game).ThenInclude(x => x.homeTeam)
                                         .Take(MAX_GAMES)
                                         .ToListAsync();
+
+            return DbGameOddsToGameOddsMapper.Map(dbGameOdds);
         }
     }
 }

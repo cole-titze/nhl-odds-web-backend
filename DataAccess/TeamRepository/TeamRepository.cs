@@ -1,6 +1,6 @@
-﻿using Entities.Models;
+﻿using Entities.Types;
 using Microsoft.EntityFrameworkCore;
-using DataAccess.Mappers;
+using DataAccess.TeamRepository.Mappers;
 
 namespace DataAccess.TeamRepository
 {
@@ -15,10 +15,10 @@ namespace DataAccess.TeamRepository
         /// Gets all teams from the database
         /// </summary>
         /// <returns>List of teams</returns>
-        public async Task<IList<TeamStats>> GetAllTeams()
+        public async Task<IEnumerable<TeamStats>> GetAllTeams()
         {
             var dbTeams = await _dbContext.Team.ToListAsync();
-            return DbTeamsToTeamsMapper.Map(dbTeams);
+            return DbTeamsToTeamStatsMapper.Map(dbTeams);
         }
     }
 }

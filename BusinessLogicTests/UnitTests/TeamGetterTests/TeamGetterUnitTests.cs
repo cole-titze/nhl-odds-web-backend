@@ -1,9 +1,10 @@
 ﻿namespace BusinessLogicTests.UnitTests.TeamGetterTests;
 using FluentAssertions;
 using BusinessLogic.TeamGetter;
-using Entities.Models;
+using Entities.Types;
 using Entities.DbModels;
 using BusinessLogicTests.Fakes;
+using System.Diagnostics;
 
 [TestClass]
 public class TeamGetterUnitTests
@@ -17,7 +18,10 @@ public class TeamGetterUnitTests
         {
             var team = new TeamStats()
             {
-                id = i
+                team = new Team()
+                {
+                    id = i,
+                }
             };
             teamList.Add(team);
         }
@@ -53,33 +57,13 @@ public class TeamGetterUnitTests
         return cut;
     }
     [TestMethod]
-    public async Task CallToGetAllTeams_WithNoTeams_ShouldGetNoTeams()
-    {
-        int numberOfTeams = 0;
-        int numberOfLogLossGames = 0;
-        var cut = Factory(numberOfTeams, numberOfLogLossGames, 1);
-
-        var teams = await cut.GetAllTeams();
-        teams.Should().HaveCount(0);
-    }
-    [TestMethod]
-    public async Task CallToGetAllTeams_WithFiveTeams_ShouldGetFiveTeams()
-    {
-        int numberOfTeams = 5;
-        int numberOfLogLossGames = 5;
-        var cut = Factory(numberOfTeams, numberOfLogLossGames, 1);
-
-        var teams = await cut.GetAllTeams();
-        teams.Should().HaveCount(5);
-    }
-    [TestMethod]
     public async Task CallToBuildTeamLogLosses_WithZeroTeamsAndZeroLogLosses_ShouldGetZeroTeams()
     {
         int numberOfTeams = 0;
         int numberOfLogLossGames = 0;
         var cut = Factory(numberOfTeams, numberOfLogLossGames, 1);
 
-        var teams = await cut.BuildLogLosses(YEAR);
+        var teams = await cut.GetTeamStats(YEAR);
         teams.Should().HaveCount(0);
     }
     [TestMethod]
@@ -89,7 +73,7 @@ public class TeamGetterUnitTests
         int numberOfLogLossGames = 5;
         var cut = Factory(numberOfTeams, numberOfLogLossGames, 1);
 
-        var teams = await cut.BuildLogLosses(YEAR);
+        var teams = await cut.GetTeamStats(YEAR);
         teams.Should().HaveCount(0);
     }
     [TestMethod]
@@ -99,7 +83,7 @@ public class TeamGetterUnitTests
         int numberOfLogLossGames = 0;
         var cut = Factory(numberOfTeams, numberOfLogLossGames, 1);
 
-        var teams = await cut.BuildLogLosses(YEAR);
+        var teams = await cut.GetTeamStats(YEAR);
         teams.Should().HaveCount(0);
     }
     [TestMethod]
@@ -110,7 +94,7 @@ public class TeamGetterUnitTests
         int numberOfLogLossGames = 10;
         var cut = Factory(numberOfTeams, numberOfLogLossGames, numberOfTeamsWhoPlayed);
 
-        var teams = await cut.BuildLogLosses(YEAR);
+        var teams = await cut.GetTeamStats(YEAR);
         teams.Should().HaveCount(3);
     }
     private List<DbLogLoss> BuildLogLossValues(List<DbLogLoss> logLossList)
@@ -144,7 +128,7 @@ public class TeamGetterUnitTests
         var logLossRepo = new FakeLogLossRepository(logLossList);
         var cut = new TeamGetter(teamRepo, logLossRepo);
 
-        var teams = await cut.BuildLogLosses(YEAR);
+        var teams = await cut.GetTeamStats(YEAR);
         Math.Round(teams.First().modelLogLoss, 4).Should().Be(.7657);
         Math.Round(teams.First().vegasLogLoss, 4).Should().Be(.7455);
     }

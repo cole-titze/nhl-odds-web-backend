@@ -1,6 +1,6 @@
 ﻿namespace BusinessLogicTests.UnitTests.TeamGetterTests;
 using FluentAssertions;
-using Entities.Models;
+using Entities.Types;
 using Entities.DbModels;
 using BusinessLogic.GameOddsGetter;
 using BusinessLogicTests.Fakes;
@@ -15,14 +15,14 @@ public class GameOddsGetterUnitTests
     };
     private DateTime dateInRange = DateTime.Parse("1/1/2005");
     private DateTime dateOutOfRange = DateTime.Parse("1/1/2020");
-    public List<DbGameOdds> GamesFactory(int numberOfGamesInDateRange, int numberOfGamesOutOfDateRange)
+    public List<GameOdds> GamesFactory(int numberOfGamesInDateRange, int numberOfGamesOutOfDateRange)
     {
-        var gameList = new List<DbGameOdds>();
+        var gameList = new List<GameOdds>();
         for (int i = 0; i < numberOfGamesInDateRange; i++)
         {
-            var game = new DbGameOdds()
+            var game = new GameOdds()
             {
-                game = new DbGame()
+                game = new Game()
                 {
                     gameDate = dateInRange
                 }
@@ -31,9 +31,9 @@ public class GameOddsGetterUnitTests
         }
         for (int i = 0; i < numberOfGamesOutOfDateRange; i++)
         {
-            var game = new DbGameOdds()
+            var game = new GameOdds()
             {
-                game = new DbGame()
+                game = new Game()
                 {
                     gameDate = dateOutOfRange
                 }

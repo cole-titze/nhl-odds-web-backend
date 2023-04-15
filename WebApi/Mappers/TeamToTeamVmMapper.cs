@@ -1,4 +1,4 @@
-﻿using Entities.Models;
+﻿using Entities.Types;
 using Entities.ViewModels;
 
 namespace WebApi.Mappers
@@ -8,22 +8,22 @@ namespace WebApi.Mappers
         /// <summary>
         /// Converts a team object to a view model
         /// </summary>
-        /// <param name="teams">The teams to convert</param>
+        /// <param name="teamsStats">The teams to convert</param>
         /// <returns>View model for displaying teams</returns>
-        public static IEnumerable<TeamViewModel> Map(IEnumerable<TeamStats> teams)
+        public static IEnumerable<TeamViewModel> Map(IEnumerable<TeamStats> teamsStats)
         {
             List<TeamViewModel> teamsVm = new List<TeamViewModel>();
 
-            foreach(var team in teams)
+            foreach(var teamStat in teamsStats)
             {
                 var teamVm = new TeamViewModel
                 {
-                    id = team.id,
-                    locationName = team.locationName,
-                    teamName = team.teamName,
-                    logoUri = team.logoUri,
-                    vegasLogLoss = team.vegasLogLoss,
-                    modelLogLoss = team.modelLogLoss
+                    id = teamStat.team.id,
+                    locationName = teamStat.team.locationName,
+                    teamName = teamStat.team.teamName,
+                    logoUri = teamStat.team.logoUri,
+                    vegasLogLoss = teamStat.vegasLogLoss,
+                    modelLogLoss = teamStat.modelLogLoss
                 };
                 teamsVm.Add(teamVm);
             }

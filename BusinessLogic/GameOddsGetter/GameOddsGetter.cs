@@ -1,6 +1,6 @@
 ﻿using DataAccess.GameOddsRepository;
 using Entities.DbModels;
-using Entities.Models;
+using Entities.Types;
 
 namespace BusinessLogic.GameOddsGetter
 {
@@ -17,9 +17,9 @@ namespace BusinessLogic.GameOddsGetter
         /// </summary>
         /// <param name="dateRange">The date range to find games within</param>
         /// <returns>List of game odds</returns>
-        public Task<IEnumerable<DbGameOdds>> GetGameOddsInDateRange(DateRange dateRange)
+        public async Task<IEnumerable<GameOdds>> GetGameOddsInDateRange(DateRange dateRange)
         {
-            return _gameOddsRepository.GetGameOddsInDateRange(dateRange);
+            return await _gameOddsRepository.GetGameOddsInDateRange(dateRange);
         }
     }
 }

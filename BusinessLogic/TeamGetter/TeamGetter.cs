@@ -1,7 +1,7 @@
 ﻿using DataAccess.LogLossRepository;
 using DataAccess.TeamRepository;
 using Entities.DbModels;
-using Entities.Models;
+using Entities.Types;
 
 namespace BusinessLogic.TeamGetter
 {
@@ -15,55 +15,74 @@ namespace BusinessLogic.TeamGetter
             _teamRepository = teamRepository;
             _logLossRepository = logLossRepository;
         }
-        public async Task<IList<TeamStats>> GetAllTeams()
-        {
-            return await _teamRepository.GetAllTeams();
-        }
         /// <summary>
         /// Builds the log losses into the Team object
         /// </summary>
-        /// <param name="startYear">The year to get the log loss from</param>
+        /// <param name="seasonStartYear">The year to get the log loss from</param>
         /// <returns>List of filled teams</returns>
-        public async Task<IEnumerable<TeamStats>> GetTeamLogLosses(int startYear)
+        public async Task<IEnumerable<TeamStats>> GetTeamStats(int seasonStartYear)
         {
-            var logLosses = await _logLossRepository.GetAllLogLossesForSeason(startYear);
-            var teams = await GetAllTeams();
-            teams = BuildTeamLogLosses(teams, logLosses);
+            var logLosses = await _logLossRepository.GetAllLogLossesForSeason(seasonStartYear);
+            var teamsStats = await _teamRepository.GetAllTeams();
 
-            return teams;
+            teamsStats = GetActiveTeams(teamsStats, logLosses);
+            BuildTeamLogLosses(teamsStats, logLosses);
+
+            return teamsStats;
         }
+
+        /// <summary>
+        /// Gets teams that are active for the current season
+        /// </summary>
+        /// <param name="teamsStats"></param>
+        /// <returns>Team stats that are active in the list</returns>
+        private static IEnumerable<TeamStats> GetActiveTeams(IEnumerable<TeamStats> teamsStats, IEnumerable<DbLogLoss> logLosses)
+        {
+            var activeTeams = new List<TeamStats>();
+            foreach (var teamStat in teamsStats)
+            {
+                var teamLogLosses = logLosses.Where(x => (x.game.awayTeamId == teamStat.team.id || x.game.homeTeamId == teamStat.team.id)).ToList();
+                if (teamLogLosses.Count == 0)
+                    continue;
+
+                activeTeams.Add(teamStat);
+            }
+
+            return activeTeams;
+        }
+
         /// <summary>
         /// Finds the season log loss for each team. If a team has no log losses they are removed from the list
         /// </summary>
-        /// <param name="teams">The teams to calculate the log loss for</param>
+        /// <param name="teamsStats">The teams to calculate the log loss for</param>
         /// <param name="logLosses">Game log losses</param>
         /// <returns>List of filled teams</returns>
-        private static IList<TeamStats> BuildTeamLogLosses(IList<TeamStats> teams, IEnumerable<DbLogLoss> logLosses)
+        private static void BuildTeamLogLosses(IEnumerable<TeamStats> teamsStats, IEnumerable<DbLogLoss> logLosses)
         {
-            var teamsToRemove = new List<TeamStats>();
-            foreach(var team in teams)
+            foreach(var teamStats in teamsStats)
             {
-                var teamLogLosses = logLosses.Where(x => (x.game.awayTeamId == team.id || x.game.homeTeamId == team.id)).ToList();
+                var teamLogLosses = logLosses.Where(x => (x.game.awayTeamId == teamStats.team.id || x.game.homeTeamId == teamStats.team.id)).ToList();
                 if (teamLogLosses.Count == 0)
-                {
-                    teamsToRemove.Add(team);
                     continue;
-                }
 
-                foreach (var logLoss in teamLogLosses)
-                {
-                    team.vegasLogLoss += logLoss.bovadaLogLoss;
-                    team.modelLogLoss += logLoss.modelLogLoss;
-                }
-                team.vegasLogLoss /= teamLogLosses.Count;
-                team.modelLogLoss /= teamLogLosses.Count;
+                BuildTeamLogLoss(teamStats, teamLogLosses);
             }
-            foreach(var team in teamsToRemove)
+        }
+
+        /// <summary>
+        /// Given a team's games log losses the team's log losses are calculated and filled
+        /// </summary>
+        /// <param name="teamStats">A team's stats</param>
+        /// <param name="teamLogLosses">The log losses for a team</param>
+        private static void BuildTeamLogLoss(TeamStats teamStats, IEnumerable<DbLogLoss> teamLogLosses)
+        {
+            foreach (var logLoss in teamLogLosses)
             {
-                teams.Remove(team);
+                teamStats.vegasLogLoss += logLoss.bovadaLogLoss;
+                teamStats.modelLogLoss += logLoss.modelLogLoss;
             }
-
-            return teams;
+            teamStats.vegasLogLoss /= teamLogLosses.Count();
+            teamStats.modelLogLoss /= teamLogLosses.Count();
         }
     }
 }

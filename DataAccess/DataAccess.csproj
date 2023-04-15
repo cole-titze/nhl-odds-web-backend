@@ -13,6 +13,7 @@
     <None Remove="LogLossRepository\" />
     <None Remove="GameOddsRepository\" />
     <None Remove="TeamRepository\Mappers\" />
+    <None Remove="GameOddsRepository\Mappers\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.5" />
@@ -29,5 +30,6 @@
     <Folder Include="LogLossRepository\" />
     <Folder Include="GameOddsRepository\" />
     <Folder Include="TeamRepository\Mappers\" />
+    <Folder Include="GameOddsRepository\Mappers\" />
   </ItemGroup>
 </Project>

@@ -1,11 +1,11 @@
 ﻿using Entities.DbModels;
-using Entities.Models;
+using Entities.Types;
 
 namespace DataAccess.GameOddsRepository
 {
 	public interface IGameOddsRepository
 	{
-        Task<IEnumerable<DbGameOdds>> GetGameOddsInDateRange(DateRange dateRange);
+        Task<IEnumerable<GameOdds>> GetGameOddsInDateRange(DateRange dateRange);
     }
 }
 
