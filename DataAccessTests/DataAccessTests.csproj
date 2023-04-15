@@ -24,10 +24,6 @@
     <None Remove="FluentAssertions" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="UnitTests\" />
-    <Folder Include="UnitTests\Mappers\" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\Entities\Entities.csproj" />
     <ProjectReference Include="..\DataAccess\DataAccess.csproj" />
   </ItemGroup>

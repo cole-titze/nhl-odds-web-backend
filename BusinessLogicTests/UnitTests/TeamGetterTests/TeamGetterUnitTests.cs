@@ -4,7 +4,6 @@ using BusinessLogic.TeamGetter;
 using Entities.Types;
 using Entities.DbModels;
 using BusinessLogicTests.Fakes;
-using System.Diagnostics;
 
 [TestClass]
 public class TeamGetterUnitTests

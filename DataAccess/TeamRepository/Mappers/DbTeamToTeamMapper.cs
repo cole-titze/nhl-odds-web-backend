@@ -1,10 +1,9 @@
-﻿using System;
-using Entities.DbModels;
+﻿using Entities.DbModels;
 using Entities.Types;
 
 namespace DataAccess.TeamRepository.Mappers
 {
-	public static class DbTeamToTeamMapper
+    public static class DbTeamToTeamMapper
 	{
 		public static Team Map(DbTeam dbTeam)
 		{

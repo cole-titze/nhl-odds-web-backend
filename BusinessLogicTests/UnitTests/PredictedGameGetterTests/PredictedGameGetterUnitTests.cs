@@ -1,7 +1,6 @@
 ﻿namespace BusinessLogicTests.UnitTests.TeamGetterTests;
 using FluentAssertions;
 using Entities.Types;
-using Entities.DbModels;
 using BusinessLogic.GameOddsGetter;
 using BusinessLogicTests.Fakes;
 

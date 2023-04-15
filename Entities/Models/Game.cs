@@ -1,9 +1,8 @@
-﻿using System;
-using Entities.DbModels;
+﻿using Entities.DbModels;
 
 namespace Entities.Types
 {
-	public class Game
+    public class Game
 	{
         public int id { get; set; }
         public DateTime gameDate { get; set; }

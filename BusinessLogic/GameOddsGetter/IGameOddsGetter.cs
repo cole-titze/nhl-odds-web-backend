@@ -1,5 +1,4 @@
-﻿using Entities.DbModels;
-using Entities.Types;
+﻿using Entities.Types;
 
 namespace BusinessLogic.GameOddsGetter
 {

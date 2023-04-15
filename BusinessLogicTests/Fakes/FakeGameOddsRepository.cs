@@ -1,5 +1,4 @@
 ﻿using DataAccess.GameOddsRepository;
-using Entities.DbModels;
 using Entities.Types;
 
 namespace BusinessLogicTests.Fakes

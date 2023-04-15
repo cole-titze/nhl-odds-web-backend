@@ -1,7 +1,6 @@
-﻿using System;
-namespace Entities.Types
+﻿namespace Entities.Types
 {
-	public class GameOdds
+    public class GameOdds
 	{
         public double vegasHomeOdds { get; set; }
         public double vegasAwayOdds { get; set; }

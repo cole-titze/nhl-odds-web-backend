@@ -1,12 +1,10 @@
-﻿using System;
-using System.Reflection;
-using DataAccess.TeamRepository.Mappers;
+﻿using DataAccess.TeamRepository.Mappers;
 using Entities.DbModels;
 using Entities.Types;
 
 namespace DataAccess.GameOddsRepository.Mappers
 {
-	public static class DbGameOddsToGameOddsMapper
+    public static class DbGameOddsToGameOddsMapper
 	{
 		public static IEnumerable<GameOdds> Map(IEnumerable<DbGameOdds> dbGameOdds)
 		{

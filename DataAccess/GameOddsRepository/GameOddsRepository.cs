@@ -1,11 +1,10 @@
 ﻿using DataAccess.GameOddsRepository.Mappers;
-using Entities.DbModels;
 using Entities.Types;
 using Microsoft.EntityFrameworkCore;
 
 namespace DataAccess.GameOddsRepository
 {
-	public class GameOddsRepository : IGameOddsRepository
+    public class GameOddsRepository : IGameOddsRepository
 	{
         private readonly GameDbContext _dbContext;
         private const int MAX_GAMES = 15;

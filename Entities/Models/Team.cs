@@ -1,7 +1,6 @@
-﻿using System;
-namespace Entities.Types
+﻿namespace Entities.Types
 {
-	public class Team
+    public class Team
 	{
         public int id { get; set; }
         public string locationName { get; set; } = string.Empty;
