@@ -1,6 +1,6 @@
 ﻿namespace Entities.Models
 {
-    public class Team
+    public class TeamStats
     {
         public int id { get; set; }
         public string locationName { get; set; } = string.Empty;

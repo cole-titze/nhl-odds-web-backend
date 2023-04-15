@@ -15,7 +15,7 @@ namespace BusinessLogic.TeamGetter
             _teamRepository = teamRepository;
             _logLossRepository = logLossRepository;
         }
-        public async Task<IList<Team>> GetAllTeams()
+        public async Task<IList<TeamStats>> GetAllTeams()
         {
             return await _teamRepository.GetAllTeams();
         }
@@ -24,7 +24,7 @@ namespace BusinessLogic.TeamGetter
         /// </summary>
         /// <param name="startYear">The year to get the log loss from</param>
         /// <returns>List of filled teams</returns>
-        public async Task<IEnumerable<Team>> BuildLogLosses(int startYear)
+        public async Task<IEnumerable<TeamStats>> GetTeamLogLosses(int startYear)
         {
             var logLosses = await _logLossRepository.GetAllLogLossesForSeason(startYear);
             var teams = await GetAllTeams();
@@ -38,9 +38,9 @@ namespace BusinessLogic.TeamGetter
         /// <param name="teams">The teams to calculate the log loss for</param>
         /// <param name="logLosses">Game log losses</param>
         /// <returns>List of filled teams</returns>
-        private static IList<Team> BuildTeamLogLosses(IList<Team> teams, IEnumerable<DbLogLoss> logLosses)
+        private static IList<TeamStats> BuildTeamLogLosses(IList<TeamStats> teams, IEnumerable<DbLogLoss> logLosses)
         {
-            var teamsToRemove = new List<Team>();
+            var teamsToRemove = new List<TeamStats>();
             foreach(var team in teams)
             {
                 var teamLogLosses = logLosses.Where(x => (x.game.awayTeamId == team.id || x.game.homeTeamId == team.id)).ToList();

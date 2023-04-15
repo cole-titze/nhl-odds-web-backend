@@ -4,7 +4,7 @@ namespace BusinessLogic.TeamGetter
 {
     public interface ITeamGetter
     {
-        Task<IList<Team>> GetAllTeams();
-        Task<IEnumerable<Team>> BuildLogLosses(int startYear);
+        Task<IList<TeamStats>> GetAllTeams();
+        Task<IEnumerable<TeamStats>> GetTeamLogLosses(int startYear);
     }
 }

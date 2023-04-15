@@ -10,9 +10,9 @@
     <None Remove="Microsoft.EntityFrameworkCore.SqlServer" />
     <None Remove="Microsoft.EntityFrameworkCore.Tools" />
     <None Remove="TeamRepository\" />
-    <None Remove="Mappers\" />
     <None Remove="LogLossRepository\" />
     <None Remove="GameOddsRepository\" />
+    <None Remove="TeamRepository\Mappers\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.5" />
@@ -26,8 +26,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="TeamRepository\" />
-    <Folder Include="Mappers\" />
     <Folder Include="LogLossRepository\" />
     <Folder Include="GameOddsRepository\" />
+    <Folder Include="TeamRepository\Mappers\" />
   </ItemGroup>
 </Project>

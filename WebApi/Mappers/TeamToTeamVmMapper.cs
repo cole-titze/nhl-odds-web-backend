@@ -10,7 +10,7 @@ namespace WebApi.Mappers
         /// </summary>
         /// <param name="teams">The teams to convert</param>
         /// <returns>View model for displaying teams</returns>
-        public static IEnumerable<TeamViewModel> Map(IEnumerable<Team> teams)
+        public static IEnumerable<TeamViewModel> Map(IEnumerable<TeamStats> teams)
         {
             List<TeamViewModel> teamsVm = new List<TeamViewModel>();
 

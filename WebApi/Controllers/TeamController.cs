@@ -24,7 +24,7 @@ namespace WebApi.Controllers
         [HttpGet]
         public async Task<IResult> GetAllTeams(int seasonStartYear)
         {
-            var teamsWithLogLoss = await _teamGetter.BuildLogLosses(seasonStartYear);
+            var teamsWithLogLoss = await _teamGetter.GetTeamLogLosses(seasonStartYear);
             var teamsVm = TeamToTeamVmMapper.Map(teamsWithLogLoss);
             return Results.Ok(teamsVm);
         }

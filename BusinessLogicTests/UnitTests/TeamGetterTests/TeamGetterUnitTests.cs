@@ -9,13 +9,13 @@ using BusinessLogicTests.Fakes;
 public class TeamGetterUnitTests
 {
     private const int YEAR = 2021;
-    public List<Team> TeamsFactory(int numberOfTeams)
+    public List<TeamStats> TeamsFactory(int numberOfTeams)
     {
-        var teamList = new List<Team>();
+        var teamList = new List<TeamStats>();
         var logLossList = new List<DbLogLoss>();
         for (int i = 0; i < numberOfTeams; i++)
         {
-            var team = new Team()
+            var team = new TeamStats()
             {
                 id = i
             };

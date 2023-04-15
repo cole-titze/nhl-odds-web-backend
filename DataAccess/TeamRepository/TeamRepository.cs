@@ -15,7 +15,7 @@ namespace DataAccess.TeamRepository
         /// Gets all teams from the database
         /// </summary>
         /// <returns>List of teams</returns>
-        public async Task<IList<Team>> GetAllTeams()
+        public async Task<IList<TeamStats>> GetAllTeams()
         {
             var dbTeams = await _dbContext.Team.ToListAsync();
             return DbTeamsToTeamsMapper.Map(dbTeams);

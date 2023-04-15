@@ -5,12 +5,12 @@ namespace BusinessLogicTests.Fakes
 {
     public class FakeTeamRepository : ITeamRepository
 	{
-        private IList<Team> _teams { get; set; } = new List<Team>();
-        public FakeTeamRepository(List<Team> teams)
+        private IList<TeamStats> _teams { get; set; } = new List<TeamStats>();
+        public FakeTeamRepository(List<TeamStats> teams)
         {
             _teams = teams;
         }
-        public Task<IList<Team>> GetAllTeams()
+        public Task<IList<TeamStats>> GetAllTeams()
         {
             return Task.FromResult(_teams);
         }

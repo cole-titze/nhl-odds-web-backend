@@ -1,7 +1,7 @@
 ﻿using Entities.Models;
 using Entities.DbModels;
 
-namespace DataAccess.Mappers
+namespace DataAccess.TeamRepository.Mappers
 {
     public static class DbTeamsToTeamsMapper
     {
@@ -10,12 +10,12 @@ namespace DataAccess.Mappers
         /// </summary>
         /// <param name="dbTeams">The database teams to convert</param>
         /// <returns>Team objects</returns>
-        public static IList<Team> Map(IEnumerable<DbTeam> dbTeams)
+        public static IList<TeamStats> Map(IEnumerable<DbTeam> dbTeams)
         {
-            var teamsList = new List<Team>();
+            var teamsList = new List<TeamStats>();
             foreach(var dbTeam in dbTeams)
             {
-                var team = new Team
+                var team = new TeamStats
                 {
                     id = dbTeam.id,
                     teamName = dbTeam.teamName,
