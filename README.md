@@ -4,6 +4,7 @@
 ![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/cole-titze/nhl-odds-web-backend/build.yml?label=Build)
 ![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/cole-titze/nhl-odds-web-backend/test.yml?label=Tests)
 ![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/cole-titze/nhl-odds-web-backend/docker-publish.yml?label=Docker%20Publish)
+![Libraries.io dependency status for GitHub repo](https://img.shields.io/librariesio/github/cole-titze/nhl-odds-web-backend?label=Dependencies)
 \
 ![cod cov](https://nhlblobstorage.blob.core.windows.net/repobadges/nhlOddsWebBackedBusinessLogicBadge.svg)
 ![cod cov](https://nhlblobstorage.blob.core.windows.net/repobadges/nhlOddsWebBackedEntitiesBadge.svg)
