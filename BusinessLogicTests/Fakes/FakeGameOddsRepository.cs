@@ -14,6 +14,11 @@ namespace BusinessLogicTests.Fakes
         {
             return await Task.FromResult(_predictedGames.Where(x => (x.game.gameDate.Date >= dateRange.startDate && x.game.gameDate.Date <= dateRange.endDate)).ToList());
         }
+
+        public Task<IEnumerable<GameOdds>> GetTeamGameOdds(int teamId, int seasonStartYear)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
 
