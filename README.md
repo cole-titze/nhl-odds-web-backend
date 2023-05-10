@@ -1,4 +1,4 @@
-![GitHub](https://img.shields.io/github/license/cole-titze/nhl-odds-web-backend?color=brightgreen)(https://github.com/cole-titze/nhl-odds-web-backend/blob/main/LICENSE)
+[![GitHub](https://img.shields.io/github/license/cole-titze/nhl-odds-web-backend?color=brightgreen)](https://github.com/cole-titze/nhl-odds-web-backend/blob/main/LICENSE)
 [![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/cole-titze/nhl-odds-web-backend?label=Release)](https://github.com/cole-titze/nhl-odds-web-backend/releases)
 \
 [![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/cole-titze/nhl-odds-web-backend/build.yml?label=Build)](https://github.com/cole-titze/nhl-odds-web-backend/actions/workflows/build.yml)
