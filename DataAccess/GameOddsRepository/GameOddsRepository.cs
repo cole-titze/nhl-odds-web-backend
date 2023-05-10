@@ -28,6 +28,18 @@ namespace DataAccess.GameOddsRepository
 
             return DbGameOddsToGameOddsMapper.Map(dbGameOdds);
         }
+        /// <summary>
+        /// Gets the game odds for a team during a year
+        /// </summary>
+        /// <param name="teamId">The team to get game odds for</param>
+        /// <param name="seasonStartYear">The year to get games for</param>
+        /// <returns>List of game odds</returns>
+        public async Task<IEnumerable<GameOdds>> GetTeamGameOdds(int teamId, int seasonStartYear)
+        {
+            var dbGameOdds = await _dbContext.GameOdds.Where(x => (x.game.awayTeamId == teamId || x.game.homeTeamId == teamId) && x.game.seasonStartYear == seasonStartYear).ToListAsync();
+
+            return DbGameOddsToGameOddsMapper.Map(dbGameOdds);
+        }
     }
 }
 

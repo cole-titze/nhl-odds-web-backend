@@ -1,4 +1,5 @@
-﻿using BusinessLogic.TeamGetter;
+﻿using BusinessLogic.GameOddsGetter;
+using BusinessLogic.TeamGetter;
 using Microsoft.AspNetCore.Mvc;
 using WebApi.Mappers;
 
@@ -10,11 +11,13 @@ namespace WebApi.Controllers
     {
         private readonly ILogger<GameOddsController> _logger;
         private readonly ITeamGetter _teamGetter;
+        private readonly IGameOddsGetter _gameOddsGetter;
 
-        public TeamController(ILogger<GameOddsController> logger, ITeamGetter predictedGameBL)
+        public TeamController(ILogger<GameOddsController> logger, ITeamGetter predictedGameBL, IGameOddsGetter gameOddsBL)
         {
             _logger = logger;
             _teamGetter = predictedGameBL;
+            _gameOddsGetter = gameOddsBL;
         }
         /// <summary>
         /// Gets log losses of teams for a given season
@@ -24,8 +27,9 @@ namespace WebApi.Controllers
         [HttpGet]
         public async Task<IResult> GetAllTeams(int seasonStartYear)
         {
-            var teamsWithLogLoss = await _teamGetter.GetTeamStats(seasonStartYear);
-            var teamsVm = TeamToTeamVmMapper.Map(teamsWithLogLoss);
+            var teams = await _teamGetter.GetTeamStats(seasonStartYear);
+            teams = await _gameOddsGetter.BuildTeamsGameOdds(teams, seasonStartYear);
+            var teamsVm = TeamToTeamVmMapper.Map(teams);
             return Results.Ok(teamsVm);
         }
     }
