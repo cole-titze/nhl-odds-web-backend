@@ -10,12 +10,12 @@ namespace WebApi.Mappers
 		/// </summary>
 		/// <param name="games">The game odds to convert</param>
 		/// <returns>View model for displaying game odds</returns>
-		public static IEnumerable<GameOddsViewModel> Map(IEnumerable<GameOdds> games)
+		public static IEnumerable<GameOddsVM> Map(IEnumerable<GameOdds> games)
 		{
-			List<GameOddsViewModel> viewModelGames = new List<GameOddsViewModel>();
+			List<GameOddsVM> viewModelGames = new List<GameOddsVM>();
 			foreach(var gameOdds in games)
 			{
-				var awayTeam = new MatchupTeamViewModel
+				var awayTeam = new MatchupTeamVM
 				{
 					id = gameOdds.game.awayTeam.id,
 					locationName = gameOdds.game.awayTeam.locationName,
@@ -26,7 +26,7 @@ namespace WebApi.Mappers
 					goals = gameOdds.game.awayGoals,
 					team = TEAM.away
 				};
-                var homeTeam = new MatchupTeamViewModel
+                var homeTeam = new MatchupTeamVM
                 {
                     id = gameOdds.game.homeTeam.id,
                     locationName = gameOdds.game.homeTeam.locationName,
@@ -37,7 +37,7 @@ namespace WebApi.Mappers
 					goals = gameOdds.game.homeGoals,
 					team = TEAM.home
                 };
-				var viewModelGame = new GameOddsViewModel
+				var viewModelGame = new GameOddsVM
 				{
 					id = gameOdds.game.id,
 					gameDate = gameOdds.game.gameDate,

@@ -1,6 +1,6 @@
 ﻿namespace Entities.ViewModels
 {
-    public class TeamViewModel
+    public class TeamVM
 	{
         public int id { get; set; }
         public string locationName { get; set; } = string.Empty;

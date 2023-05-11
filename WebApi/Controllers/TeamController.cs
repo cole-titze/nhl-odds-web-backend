@@ -29,7 +29,7 @@ namespace WebApi.Controllers
         {
             var teams = await _teamGetter.GetTeamStats(seasonStartYear);
             teams = await _gameOddsGetter.BuildTeamsGameOdds(teams, seasonStartYear);
-            var teamsVm = TeamToTeamVmMapper.Map(teams);
+            var teamsVm = TeamsToTeamsVmMapper.Map(teams);
             return Results.Ok(teamsVm);
         }
     }

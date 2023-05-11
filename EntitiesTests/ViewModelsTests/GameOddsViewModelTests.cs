@@ -10,12 +10,12 @@ namespace EntitiesTests.ViewModelsTests
         [TestMethod]
         public void PlaceholderGameOddsViewModelTests()
         {
-            var gameOddsViewModel = new GameOddsViewModel()
+            var gameOddsViewModel = new GameOddsVM()
             {
                 id = 1,
                 gameDate = DateTime.Parse("01/15/2023"),
-                homeTeam = new MatchupTeamViewModel(),
-                awayTeam = new MatchupTeamViewModel(),
+                homeTeam = new MatchupTeamVM(),
+                awayTeam = new MatchupTeamVM(),
                 winner = TEAM.away,
                 hasBeenPlayed = false,
             };

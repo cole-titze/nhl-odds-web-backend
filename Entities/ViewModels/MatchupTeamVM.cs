@@ -2,7 +2,7 @@
 
 namespace Entities.ViewModels
 {
-    public class MatchupTeamViewModel
+    public class MatchupTeamVM
 	{
         public int id { get; set; }
         public string locationName { get; set; } = string.Empty;

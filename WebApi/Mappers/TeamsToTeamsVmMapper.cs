@@ -4,20 +4,21 @@ using Entities.ViewModels;
 
 namespace WebApi.Mappers
 {
-    public static class TeamToTeamVmMapper
+    public static class TeamsToTeamsVmMapper
 	{
         /// <summary>
         /// Converts a team object to a view model
         /// </summary>
         /// <param name="teamsStats">The teams to convert</param>
         /// <returns>View model for displaying teams</returns>
-        public static IEnumerable<TeamViewModel> Map(IEnumerable<TeamStats> teamsStats)
+        public static TeamsVM Map(IEnumerable<TeamStats> teamsStats)
         {
-            List<TeamViewModel> teamsVm = new List<TeamViewModel>();
+            List<TeamVM> teams = new List<TeamVM>();
+            var teamsVm = new TeamsVM();
 
             foreach(var teamStat in teamsStats)
             {
-                var teamVm = new TeamViewModel
+                var teamVm = new TeamVM
                 {
                     id = teamStat.team.id,
                     locationName = teamStat.team.locationName,
@@ -29,10 +30,39 @@ namespace WebApi.Mappers
                     totalAccurateModelGames = GetCorrectModelPredictionCount(teamStat.gameOdds),
                     totalAccurateVegasGames = GetCorrectVegasPredictionCount(teamStat.gameOdds),
                 };
-                teamsVm.Add(teamVm);
+                teams.Add(teamVm);
             }
+            teamsVm.teams = teams;
+            teamsVm = BuildSeasonTotals(teamsVm);
+
             return teamsVm;
         }
+        /// <summary>
+        /// Builds the season stats view model
+        /// </summary>
+        /// <param name="teamsVm">The view model to use to build the season stats object</param>
+        /// <returns>The teams view model</returns>
+        private static TeamsVM BuildSeasonTotals(TeamsVM teamsVm)
+        {
+            foreach(var team in teamsVm.teams)
+            {
+                teamsVm.seasonTotals.totalGameCount += team.totalGames;
+                teamsVm.seasonTotals.totalModelAccurateGameCount += team.totalAccurateModelGames;
+                teamsVm.seasonTotals.totalVegasAccurateGameCount += team.totalAccurateVegasGames;
+                teamsVm.seasonTotals.modelLogLossTotal += (team.modelLogLoss * team.totalGames);
+                teamsVm.seasonTotals.vegasLogLossTotal += (team.vegasLogLoss * team.totalGames);
+            }
+            teamsVm.seasonTotals.vegasLogLossTotal /= teamsVm.seasonTotals.totalGameCount;
+            teamsVm.seasonTotals.modelLogLossTotal /= teamsVm.seasonTotals.totalGameCount;
+
+            // Cut in half since we were counting games twice (home and away)
+            teamsVm.seasonTotals.totalGameCount /= 2;
+            teamsVm.seasonTotals.totalModelAccurateGameCount /= 2;
+            teamsVm.seasonTotals.totalVegasAccurateGameCount /= 2;
+
+            return teamsVm;
+        }
+
         /// <summary>
         /// Gets the correct game count of personal model
         /// </summary>

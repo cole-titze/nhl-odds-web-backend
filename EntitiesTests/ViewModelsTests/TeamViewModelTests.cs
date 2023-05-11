@@ -10,7 +10,7 @@ namespace EntitiesTests.ViewModelsTests
         [TestMethod]
         public void PlaceholderTeamViewModelTests()
         {
-            var teamViewModel = new TeamViewModel()
+            var teamViewModel = new TeamVM()
             {
                 id = 1,
                 locationName = "tor",

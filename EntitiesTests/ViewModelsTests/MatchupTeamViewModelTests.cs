@@ -10,7 +10,7 @@ namespace EntitiesTests.ViewModelsTests
         [TestMethod]
         public void PlaceholderMatchupTeamViewModelTests()
         {
-            var matchupTeamViewModel = new MatchupTeamViewModel()
+            var matchupTeamViewModel = new MatchupTeamVM()
             {
                 id = 1,
                 locationName = "tor",
