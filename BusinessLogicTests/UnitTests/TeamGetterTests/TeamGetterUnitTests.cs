@@ -62,7 +62,7 @@ public class TeamGetterUnitTests
         int numberOfLogLossGames = 0;
         var cut = Factory(numberOfTeams, numberOfLogLossGames, 1);
 
-        var teams = await cut.GetTeamStats(YEAR);
+        var teams = await cut.GetAllTeamsStats(YEAR);
         teams.Should().HaveCount(0);
     }
     [TestMethod]
@@ -72,7 +72,7 @@ public class TeamGetterUnitTests
         int numberOfLogLossGames = 5;
         var cut = Factory(numberOfTeams, numberOfLogLossGames, 1);
 
-        var teams = await cut.GetTeamStats(YEAR);
+        var teams = await cut.GetAllTeamsStats(YEAR);
         teams.Should().HaveCount(0);
     }
     [TestMethod]
@@ -82,7 +82,7 @@ public class TeamGetterUnitTests
         int numberOfLogLossGames = 0;
         var cut = Factory(numberOfTeams, numberOfLogLossGames, 1);
 
-        var teams = await cut.GetTeamStats(YEAR);
+        var teams = await cut.GetAllTeamsStats(YEAR);
         teams.Should().HaveCount(0);
     }
     [TestMethod]
@@ -93,7 +93,7 @@ public class TeamGetterUnitTests
         int numberOfLogLossGames = 10;
         var cut = Factory(numberOfTeams, numberOfLogLossGames, numberOfTeamsWhoPlayed);
 
-        var teams = await cut.GetTeamStats(YEAR);
+        var teams = await cut.GetAllTeamsStats(YEAR);
         teams.Should().HaveCount(3);
     }
     private List<DbLogLoss> BuildLogLossValues(List<DbLogLoss> logLossList)
@@ -127,7 +127,7 @@ public class TeamGetterUnitTests
         var logLossRepo = new FakeLogLossRepository(logLossList);
         var cut = new TeamGetter(teamRepo, logLossRepo);
 
-        var teams = await cut.GetTeamStats(YEAR);
+        var teams = await cut.GetAllTeamsStats(YEAR);
         Math.Round(teams.First().modelLogLoss, 4).Should().Be(.7657);
         Math.Round(teams.First().vegasLogLoss, 4).Should().Be(.7455);
     }

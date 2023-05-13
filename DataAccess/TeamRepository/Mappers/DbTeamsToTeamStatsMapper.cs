@@ -15,10 +15,7 @@ namespace DataAccess.TeamRepository.Mappers
             var teamsList = new List<TeamStats>();
             foreach(var dbTeam in dbTeams)
             {
-                var teamStats = new TeamStats
-                {
-                    team = DbTeamToTeamMapper.Map(dbTeam)
-                };
+                var teamStats = DbTeamToTeamStatsMapper.Map(dbTeam);
                 teamsList.Add(teamStats);
             }
 

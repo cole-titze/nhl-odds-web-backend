@@ -14,6 +14,11 @@ namespace BusinessLogicTests.Fakes
         {
             return Task.FromResult(_teams);
         }
+
+        public Task<TeamStats> GetTeam(int teamId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
 

@@ -30,10 +30,22 @@ namespace BusinessLogic.GameOddsGetter
         {
             foreach(var team in teams)
             {
-                team.gameOdds = await GetTeamGameOdds(team.team.id, seasonStartYear);
+                await BuildTeamGameOdds(team, seasonStartYear);
             }
 
             return teams;
+        }
+        /// <summary>
+        /// Gets the game odds for a single team
+        /// </summary>
+        /// <param name="team">The team to get odds for</param>
+        /// <param name="seasonStartYear">The year to get games for</param>
+        /// <returns>The game odds for the given team</returns>
+        public async Task<TeamStats> BuildTeamGameOdds(TeamStats team, int seasonStartYear)
+        {
+            team.gameOdds = await GetTeamGameOdds(team.team.id, seasonStartYear);
+
+            return team;
         }
         /// <summary>
         /// Gets the game odds for a team during a year

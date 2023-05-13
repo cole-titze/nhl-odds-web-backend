@@ -8,8 +8,8 @@
         public string logoUri { get; set; } = string.Empty;
         public double vegasLogLoss { get; set; }
         public double modelLogLoss { get; set; }
-        public int totalGames { get; set; }
-        public int totalAccurateModelGames { get; set; }
-        public int totalAccurateVegasGames { get; set; }
+        public int totalGameCount { get; set; }
+        public int totalModelAccurateGameCount { get; set; }
+        public int totalVegasAccurateGameCount { get; set; }
     }
 }

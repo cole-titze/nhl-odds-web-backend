@@ -14,6 +14,11 @@ namespace BusinessLogicTests.Fakes
         {
             return await Task.FromResult(_logLosses);
         }
+
+        public Task<IEnumerable<DbLogLoss>> GetTeamLogLossesForSeason(int teamId, int seasonStartYear)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
 

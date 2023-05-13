@@ -27,10 +27,24 @@ namespace WebApi.Controllers
         [HttpGet]
         public async Task<IResult> GetAllTeams(int seasonStartYear)
         {
-            var teams = await _teamGetter.GetTeamStats(seasonStartYear);
+            var teams = await _teamGetter.GetAllTeamsStats(seasonStartYear);
             teams = await _gameOddsGetter.BuildTeamsGameOdds(teams, seasonStartYear);
             var teamsVm = TeamsToTeamsVmMapper.Map(teams);
             return Results.Ok(teamsVm);
+        }
+        /// <summary>
+        /// Gets team information for a season
+        /// </summary>
+        /// <param name="teamId">The team to get stats on</param>
+        /// <param name="seasonStartYear">The season to get stats on</param>
+        /// <returns>A team view model that holds the log losses for the year</returns>
+        [HttpGet]
+        public async Task<IResult> GetTeam(int teamId, int seasonStartYear)
+        {
+            var team = await _teamGetter.GetTeamStats(teamId, seasonStartYear);
+            team = await _gameOddsGetter.BuildTeamGameOdds(team, seasonStartYear);
+            var teamVm = TeamToTeamVmMapper.Map(team);
+            return Results.Ok(teamVm);
         }
     }
 }
