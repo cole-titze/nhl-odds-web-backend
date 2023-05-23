@@ -40,6 +40,9 @@ namespace WebApi.Mappers
                 teamsVm.seasonTotals.modelLogLoss += (team.modelLogLoss * team.totalGameCount);
                 teamsVm.seasonTotals.vegasLogLoss += (team.vegasLogLoss * team.totalGameCount);
             }
+            if (teamsVm.seasonTotals.totalGameCount == 0)
+                return teamsVm;
+
             teamsVm.seasonTotals.vegasLogLoss /= teamsVm.seasonTotals.totalGameCount;
             teamsVm.seasonTotals.modelLogLoss /= teamsVm.seasonTotals.totalGameCount;
 

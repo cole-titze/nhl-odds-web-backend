@@ -9,6 +9,8 @@
         public double vegasLogLoss { get; set; }
         public double modelLogLoss { get; set; }
         public int totalGameCount { get; set; }
+        public int seasonWins { get; set; }
+        public int seasonLosses { get; set; }
         public int totalModelAccurateGameCount { get; set; }
         public int totalVegasAccurateGameCount { get; set; }
     }

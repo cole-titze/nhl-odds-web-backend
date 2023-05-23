@@ -22,11 +22,46 @@ namespace WebApi.Mappers
                 vegasLogLoss = teamStats.vegasLogLoss,
                 modelLogLoss = teamStats.modelLogLoss,
                 totalGameCount = teamStats.gameOdds.Count(),
+                seasonWins = GetWins(teamStats.team.id, teamStats.gameOdds),
+                seasonLosses = GetLosses(teamStats.team.id, teamStats.gameOdds),
                 totalModelAccurateGameCount = GetCorrectModelPredictionCount(teamStats.gameOdds),
                 totalVegasAccurateGameCount = GetCorrectVegasPredictionCount(teamStats.gameOdds),
             };
 
             return teamVm;
+        }
+        /// <summary>
+        /// Gets the wins for a given team
+        /// </summary>
+        /// <param name="teamId">The team to get wins for</param>
+        /// <param name="gameOdds">The games to get wins from</param>
+        /// <returns>The number of wins for a team in a season</returns>
+        private static int GetWins(int teamId, IEnumerable<GameOdds> gameOdds)
+        {
+            int wins = 0;
+            foreach(var gameOdd in gameOdds)
+            {
+                wins += gameOdd.game.IsWin(teamId);
+            }
+
+            return wins;
+        }
+
+        /// <summary>
+        /// Gets the losses for a given team
+        /// </summary>
+        /// <param name="teamId">The team to get losses for</param>
+        /// <param name="gameOdds">The games to get losses from</param>
+        /// <returns>The number of losses for a team in a season</returns>
+        private static int GetLosses(int teamId, IEnumerable<GameOdds> gameOdds)
+        {
+            int wins = 0;
+            foreach (var gameOdd in gameOdds)
+            {
+                wins += gameOdd.game.IsLoss(teamId);
+            }
+
+            return wins;
         }
 
         /// <summary>
