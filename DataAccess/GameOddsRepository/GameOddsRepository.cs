@@ -37,6 +37,7 @@ namespace DataAccess.GameOddsRepository
         public async Task<IEnumerable<GameOdds>> GetTeamGameOdds(int teamId, int seasonStartYear)
         {
             var dbGameOdds = await _dbContext.GameOdds.Where(x => (x.game.awayTeamId == teamId || x.game.homeTeamId == teamId) && x.game.seasonStartYear == seasonStartYear)
+                                                        .OrderByDescending(d => d.game.gameDate)
                                                         .Include(x => x.game).ThenInclude(x => x.awayTeam)
                                                         .Include(x => x.game).ThenInclude(x => x.homeTeam)
                                                         .ToListAsync();
