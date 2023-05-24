@@ -26,6 +26,7 @@ namespace WebApi.Mappers
                 seasonLosses = GetLosses(teamStats.team.id, teamStats.gameOdds),
                 totalModelAccurateGameCount = GetCorrectModelPredictionCount(teamStats.gameOdds),
                 totalVegasAccurateGameCount = GetCorrectVegasPredictionCount(teamStats.gameOdds),
+                gameOddsVM = GameOddsToViewModelsMapper.Map(teamStats.gameOdds),
             };
 
             return teamVm;

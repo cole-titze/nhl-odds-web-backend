@@ -36,7 +36,10 @@ namespace DataAccess.GameOddsRepository
         /// <returns>List of game odds</returns>
         public async Task<IEnumerable<GameOdds>> GetTeamGameOdds(int teamId, int seasonStartYear)
         {
-            var dbGameOdds = await _dbContext.GameOdds.Where(x => (x.game.awayTeamId == teamId || x.game.homeTeamId == teamId) && x.game.seasonStartYear == seasonStartYear).ToListAsync();
+            var dbGameOdds = await _dbContext.GameOdds.Where(x => (x.game.awayTeamId == teamId || x.game.homeTeamId == teamId) && x.game.seasonStartYear == seasonStartYear)
+                                                        .Include(x => x.game).ThenInclude(x => x.awayTeam)
+                                                        .Include(x => x.game).ThenInclude(x => x.homeTeam)
+                                                        .ToListAsync();
 
             return DbGameOddsToGameOddsMapper.Map(dbGameOdds);
         }

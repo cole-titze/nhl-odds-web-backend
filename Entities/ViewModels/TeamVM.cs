@@ -13,5 +13,6 @@
         public int seasonLosses { get; set; }
         public int totalModelAccurateGameCount { get; set; }
         public int totalVegasAccurateGameCount { get; set; }
+        public IEnumerable<GameOddsVM> gameOddsVM { get; set; } = new List<GameOddsVM>();
     }
 }
