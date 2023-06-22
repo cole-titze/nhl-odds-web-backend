@@ -37,9 +37,9 @@ builder.Services.AddCors(options =>
     options.AddPolicy(name: MyAllowSpecificOrigins,
                       builder =>
                       {
+                          builder.WithOrigins("http://10.0.0.19:8081");
                           builder.WithOrigins("http://192.168.1.19:8081");
                           builder.WithOrigins("http://localhost:8081");
-                          builder.WithOrigins("https://gray-bush-0811f9c10.1.azurestaticapps.net/");
                       });
 });
 
