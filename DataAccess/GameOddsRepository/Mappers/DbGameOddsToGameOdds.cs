@@ -26,8 +26,8 @@ namespace DataAccess.GameOddsRepository.Mappers
                             homeTeam = DbTeamToTeamMapper.Map(dbGameOdd.game.homeTeam),
                             awayTeam = DbTeamToTeamMapper.Map(dbGameOdd.game.awayTeam),
                         },
-						vegasAwayOdds = dbGameOdd.bovadaClosingVegasAwayOdds,
-						vegasHomeOdds = dbGameOdd.bovadaClosingVegasHomeOdds,
+						vegasAwayOdds = dbGameOdd.draftKingsAwayOdds,
+						vegasHomeOdds = dbGameOdd.draftKingsHomeOdds,
 						modelAwayOdds = dbGameOdd.modelAwayOdds,
 						modelHomeOdds = dbGameOdd.modelHomeOdds,
 					}

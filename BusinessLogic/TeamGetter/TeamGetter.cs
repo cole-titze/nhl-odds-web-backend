@@ -95,7 +95,7 @@ namespace BusinessLogic.TeamGetter
 
             foreach (var logLoss in teamLogLosses)
             {
-                teamStats.vegasLogLoss += logLoss.bovadaLogLoss;
+                teamStats.vegasLogLoss += logLoss.draftKingsLogLoss;
                 teamStats.modelLogLoss += logLoss.modelLogLoss;
             }
 
