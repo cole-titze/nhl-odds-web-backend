@@ -12,7 +12,7 @@ namespace EntitiesTests.DbModelsTests
             var dbLogLosses = new DbLogLoss()
             {
                 gameId = 1,
-                bovadaLogLoss = .67,
+                draftKingsLogLoss = .67,
                 modelLogLoss = .33,
                 game = new DbGame(),
             };

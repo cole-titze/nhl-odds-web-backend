@@ -20,7 +20,7 @@ namespace DataAccessTests.UnitTests.Mappers
         {
             var dbGameOdds = new List<DbGameOdds>()
             {
-                new DbGameOdds(), new DbGameOdds(), new DbGameOdds()
+                new DbGameOdds(){game = new DbGame()}, new DbGameOdds(){game = new DbGame()}, new DbGameOdds(){game = new DbGame()}
             };
             var gameOdds = DbGameOddsToGameOddsMapper.Map(dbGameOdds);
 
@@ -34,8 +34,8 @@ namespace DataAccessTests.UnitTests.Mappers
                 new DbGameOdds()
                 {
                     gameId = 1,
-                    bovadaClosingVegasHomeOdds = .4,
-                    bovadaClosingVegasAwayOdds = .6,
+                    draftKingsHomeOdds = .4,
+                    draftKingsAwayOdds = .6,
                     modelAwayOdds = .3,
                     modelHomeOdds = .7,
                     game = new DbGame()

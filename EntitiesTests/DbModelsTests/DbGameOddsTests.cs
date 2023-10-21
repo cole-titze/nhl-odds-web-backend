@@ -12,31 +12,17 @@ namespace EntitiesTests.DbModelsTests
             var dbGameOdds = new DbGameOdds()
             {
                 gameId = 1,
-                bovadaClosingVegasAwayOdds = .4,
-                bovadaClosingVegasHomeOdds = .6,
-                myBookieClosingVegasAwayOdds = .3,
-                myBookieClosingVegasHomeOdds = .7,
-                pinnacleClosingVegasAwayOdds = .33,
-                pinnacleClosingVegasHomeOdds = .67,
-                betOnlineClosingVegasAwayOdds = .4,
-                betOnlineClosingVegasHomeOdds = .6,
-                bet365ClosingVegasAwayOdds = .8,
-                bet365ClosingVegasHomeOdds = .2,
-                bovadaOpeningVegasAwayOdds = .25,
-                bovadaOpeningVegasHomeOdds = .75,
-                myBookieOpeningVegasAwayOdds = .44,
-                myBookieOpeningVegasHomeOdds = .56,
-                pinnacleOpeningVegasAwayOdds = .13,
-                pinnacleOpeningVegasHomeOdds = .87,
-                betOnlineOpeningVegasAwayOdds = .22,
-                betOnlineOpeningVegasHomeOdds = .78,
-                bet365OpeningVegasAwayOdds = .44,
-                bet365OpeningVegasHomeOdds = .56,
+                draftKingsHomeOdds = .4,
+                draftKingsAwayOdds = .6,
+                myBookieHomeOdds = .3,
+                myBookieAwayOdds = .7,
+                betMgmHomeOdds = .33,
+                betMgmAwayOdds = .67,
                 modelAwayOdds = .32,
                 modelHomeOdds = .68,
             };
 
-            dbGameOdds.pinnacleOpeningVegasHomeOdds.Should().Be(.87);
+            dbGameOdds.betMgmAwayOdds.Should().Be(.67);
         }
     }
 }

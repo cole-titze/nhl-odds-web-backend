@@ -104,12 +104,12 @@ public class TeamGetterUnitTests
         logLossList[3].modelLogLoss = .943;
         logLossList[4].modelLogLoss = .567;
         logLossList[5].modelLogLoss = .654;
-        logLossList[0].bovadaLogLoss = .677;
-        logLossList[1].bovadaLogLoss = .756;
-        logLossList[2].bovadaLogLoss = .777;
-        logLossList[3].bovadaLogLoss = .698;
-        logLossList[4].bovadaLogLoss = .843;
-        logLossList[5].bovadaLogLoss = .722;
+        logLossList[0].draftKingsLogLoss = .677;
+        logLossList[1].draftKingsLogLoss = .756;
+        logLossList[2].draftKingsLogLoss = .777;
+        logLossList[3].draftKingsLogLoss = .698;
+        logLossList[4].draftKingsLogLoss = .843;
+        logLossList[5].draftKingsLogLoss = .722;
 
         return logLossList;
     }
