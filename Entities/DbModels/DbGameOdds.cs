@@ -9,10 +9,12 @@ namespace Entities.DbModels
         public int gameId { get; set; }
         public double draftKingsHomeOdds { get; set; }
         public double draftKingsAwayOdds { get; set; }
-        public double myBookieHomeOdds { get; set; }
-        public double myBookieAwayOdds { get; set; }
+        public double bovadaHomeOdds { get; set; }
+        public double bovadaAwayOdds { get; set; }
         public double betMgmHomeOdds { get; set; }
         public double betMgmAwayOdds { get; set; }
+        public double barstoolHomeOdds { get; set; }
+        public double barstoolAwayOdds { get; set; }
         public double modelHomeOdds { get; set; }
         public double modelAwayOdds { get; set; }
         [ForeignKey("gameId")]
