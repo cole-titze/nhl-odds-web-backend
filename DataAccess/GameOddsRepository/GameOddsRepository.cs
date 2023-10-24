@@ -20,7 +20,7 @@ namespace DataAccess.GameOddsRepository
         public async Task<IEnumerable<GameOdds>> GetGameOddsInDateRange(DateRange dateRange)
         {
             var dbGameOdds = await _dbContext.GameOdds.Where(x => (x.game.gameDate.Date >= dateRange.startDate && x.game.gameDate.Date <= dateRange.endDate))
-                                        .OrderByDescending(d => d.game.gameDate)
+                                        .OrderBy(d => d.game.gameDate)
                                         .Include(x => x.game).ThenInclude(x => x.awayTeam)
                                         .Include(x => x.game).ThenInclude(x => x.homeTeam)
                                         .Take(MAX_GAMES)
