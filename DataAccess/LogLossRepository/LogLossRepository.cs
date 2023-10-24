@@ -19,7 +19,6 @@ namespace DataAccess.LogLossRepository
         {
             return _dbContext.LogLossGame.Include(x => x.game)
                                          .Where(x => x.game.seasonStartYear == seasonStartYear)
-                                         .OrderByDescending(d => d.game.gameDate)
                                          .AsQueryable();
         }
 

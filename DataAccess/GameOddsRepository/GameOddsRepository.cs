@@ -7,7 +7,7 @@ namespace DataAccess.GameOddsRepository
     public class GameOddsRepository : IGameOddsRepository
 	{
         private readonly GameDbContext _dbContext;
-        private const int MAX_GAMES = 15;
+        private const int MAX_GAMES = 16; // If all teams play in one day there will be 16 games
         public GameOddsRepository(GameDbContext dbContext)
         {
             _dbContext = dbContext;
