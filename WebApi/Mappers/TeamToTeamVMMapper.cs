@@ -21,7 +21,7 @@ namespace WebApi.Mappers
                 logoUri = teamStats.team.logoUri,
                 vegasLogLoss = teamStats.vegasLogLoss,
                 modelLogLoss = teamStats.modelLogLoss,
-                totalGameCount = teamStats.gameOdds.Count(),
+                totalGameCount = teamStats.gameOdds.Where(x => x.game.hasBeenPlayed == true).Count(),
                 seasonWins = GetWins(teamStats.team.id, teamStats.gameOdds),
                 seasonLosses = GetLosses(teamStats.team.id, teamStats.gameOdds),
                 totalModelAccurateGameCount = GetCorrectModelPredictionCount(teamStats.gameOdds),
