@@ -19,7 +19,8 @@ namespace DataAccess.GameOddsRepository
         /// <returns>List of game odds</returns>
         public async Task<IEnumerable<GameOdds>> GetGameOddsInDateRange(DateRange dateRange)
         {
-            var dbGameOdds = await _dbContext.GameOdds.Where(x => (x.game.gameDate.ToLocalTime().Date >= dateRange.startDate.Date && x.game.gameDate.ToLocalTime().Date <= dateRange.endDate.Date))
+            TimeZoneInfo cstZone = TimeZoneInfo.FindSystemTimeZoneById("Central Standard Time");
+            var dbGameOdds = await _dbContext.GameOdds.Where(x => (TimeZoneInfo.ConvertTimeFromUtc(x.game.gameDate, cstZone).Date >= dateRange.startDate.Date && TimeZoneInfo.ConvertTimeFromUtc(x.game.gameDate, cstZone).Date <= dateRange.endDate.Date))
                                         .OrderBy(d => d.game.gameDate)
                                         .Include(x => x.game).ThenInclude(x => x.awayTeam)
                                         .Include(x => x.game).ThenInclude(x => x.homeTeam)
