@@ -26,12 +26,12 @@ namespace WebApi.Controllers
         [HttpGet]
         public async Task<IResult> GetGameOddsInDateRange(DateTime startDate, DateTime endDate)
         {
-            var utcDateRange = new DateRange
+            var dateRange = new DateRange
             {
-                startDate = startDate.ToUniversalTime(),
-                endDate = endDate.ToUniversalTime()
+                startDate = startDate.Date,
+                endDate = endDate.Date
             };
-            var predictedGames = await _gameOddsGetter.GetGameOddsInDateRange(utcDateRange);
+            var predictedGames = await _gameOddsGetter.GetGameOddsInDateRange(dateRange);
             var predictedGamesVM = GameOddsToViewModelsMapper.Map(predictedGames);
             return Results.Ok(predictedGamesVM);
         }
