@@ -18,7 +18,7 @@ namespace WebApi.Controllers
             _gameOddsGetter = predictedGameBL;
         }
         /// <summary>
-        /// Gets up to 15 games within the given start and end dates. Uses central time for the dates
+        /// Gets up to 15 games within the given start and end dates. Uses central standard time of games for the dates
         /// </summary>
         /// <param name="startDate">Start Date for search</param>
         /// <param name="endDate">End Date for search</param>
