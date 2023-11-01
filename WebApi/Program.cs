@@ -5,6 +5,7 @@ using BusinessLogic.GameOddsGetter;
 using BusinessLogic.TeamGetter;
 using DataAccess.TeamRepository;
 using DataAccess.LogLossRepository;
+using BusinessLogic.LogLossGetter;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,6 +24,7 @@ builder.Services.AddScoped<IGameOddsGetter, GameOddsGetter>();
 builder.Services.AddScoped<ILogLossRepository, LogLossRepository>();
 builder.Services.AddScoped<ITeamRepository, TeamRepository>();
 builder.Services.AddScoped<IGameOddsRepository, GameOddsRepository>();
+builder.Services.AddScoped<ILogLossGetter, LogLossGetter>();
 builder.Services.AddDbContext<GameDbContext>(x => x.UseSqlServer(_connectionString));
 builder.Services.AddLogging();
 

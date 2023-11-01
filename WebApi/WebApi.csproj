@@ -27,7 +27,4 @@
     <None Remove="Microsoft.EntityFrameworkCore.SqlServer" />
     <None Remove="Mappers\" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Mappers\" />
-  </ItemGroup>
 </Project>
